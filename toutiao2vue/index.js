@@ -1,5 +1,6 @@
 import ui from './ui'
 import pages from './pages'
+import js from './js'
 import OnekitApp from './OnekitApp'
 import OnekitBehavior from './OnekitBehavior'
 import OnekitComponent from './OnekitComponent'
@@ -10,6 +11,7 @@ export default {
     Vue.use(ui)
     Vue.use(pages)
   },
+  js,
   OnekitApp,
   OnekitBehavior,
   OnekitComponent,
