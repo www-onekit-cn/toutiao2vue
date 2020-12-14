@@ -1,6 +1,6 @@
 {
   "name": "toutiao2vue",
-  "version": "1.0.6",
+  "version": "1.0.9",
   "main": "dist/index/index.js",
   "files": [
     "dist"
@@ -20,8 +20,8 @@
     "jquery-confirm": "^3.3.4",
     "jszip": "latest",
     "mobile-detect": "^1.4.4",
-    "oneutil": "latest",
-    "toutiao2html": "^1.0.1",
+    "oneutil": "^2.0.2",
+    "toutiao2html": "^1.0.6",
     "vconsole": "^3.3.4",
     "vue": "^2.6.11",
     "vue-router": "^3.4.3"

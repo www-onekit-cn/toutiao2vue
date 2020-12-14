@@ -1,6 +1,7 @@
 import $ from 'jquery'
 import Vue from 'vue'
 import TT from 'toutiao2html/tt'
+import PROMISE from 'oneutil/PROMISE'
 import OneKit from './js/OneKit'
 import EventChannel from "./api/EventChannel"
 import './js/PrevewImage'
@@ -684,6 +685,54 @@ import './js/PrevewImage'
        hideLoading() {
         $("#viewport").remove();
         $(".xsw_showLoading").remove();
+      }
+      previewMedia(wx_object) {
+        const wx_sources = wx_object.sources
+        const wx_current = wx_object.current || 0
+        const wx_success = wx_object.success
+        const wx_fail = wx_object.fail
+        const wx_complete = wx_object.complete
+    
+        PROMISE((SUCCESS) => {
+          const vue_sources = wx_sources
+          const vue_current = wx_current
+          const obj = {
+            urls: vue_sources,
+            current: vue_current,
+          }
+          // eslint-disable-next-line no-undef
+          _preview_.start(obj)
+          const res = {
+            errMsg: 'previewMedia: ok',
+          }
+          SUCCESS(res)
+        }, wx_success, wx_fail, wx_complete)
+    
+      }
+    
+       previewImage(wx_object) {
+        const wx_urls = wx_object.urls
+        const wx_current = wx_object.current
+        const wx_success = wx_object.success
+        const wx_fail = wx_object.fail
+        const wx_complete = wx_object.complete
+    
+        PROMISE((SUCCESS) => {
+          const vue_urls = wx_urls
+          const vue_current = wx_current
+          const obj = {
+            urls: vue_urls,
+            current: vue_current
+          };
+          // eslint-disable-next-line no-undef
+          _preview_.start(obj)
+          const res = {
+            errMsg: 'previewImage: ok'
+          }
+          SUCCESS(res)
+        }, wx_success, wx_complete, wx_fail)
+    
+    
       }
 }
 export default new VueTT(Vue.prototype)

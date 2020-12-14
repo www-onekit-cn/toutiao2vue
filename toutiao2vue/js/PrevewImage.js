@@ -642,7 +642,7 @@
   // AMD loader
   if (typeof define === "function" && define.amd) {
     define([], function() {
-      return _previewImage;
+      return _preview_;
     });
   }
 

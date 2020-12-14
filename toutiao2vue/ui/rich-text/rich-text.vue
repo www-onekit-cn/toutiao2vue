@@ -9,7 +9,8 @@
 </template>
 
 <script>
-  import {HTML,STRING} from 'oneutil'
+  import HTML from 'oneutil/HTML'
+  import STRING from 'oneutil/STRING'
   import toutiao_behavior from "../../behaviors/toutiao_behavior"
 import onekit_behavior from "../../behaviors/onekit_behavior"
   export default {
