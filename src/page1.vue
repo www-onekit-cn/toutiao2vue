@@ -3,6 +3,7 @@
 
     <!-- <input type="file" ref="eFile" @change="eFile_change" /> -->
     <page id="app">
+      <onekit-text>xxx</onekit-text>
       <!-- <onekit-video :src="tempFilePath"></onekit-video>
       <onekit-image :src="origintempFilePath"></onekit-image> -->
       <!-- <img src="./kiko_20200309184916.jpg" alt=""> -->
