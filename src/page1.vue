@@ -1,26 +1,21 @@
 <template>
   <page id="app">
 
-    <!-- <input type="file" ref="eFile" @change="eFile_change" /> -->
-    <page id="app">
+
       <onekit-text>xxx</onekit-text>
       <!-- <onekit-video :src="tempFilePath"></onekit-video>
       <onekit-image :src="origintempFilePath"></onekit-image> -->
       <!-- <img src="./kiko_20200309184916.jpg" alt=""> -->
       <!-- <video src=""></video> -->
-    </page>
+
   </page>
 </template>
 
 <script>
   import OnekitPage from '../toutiao2vue/OnekitPage';
   import video from '../toutiao2vue/ui/video/video.vue';
-  // import JSZip from 'jszip'
-  // let saveAs = require('file-saver');
   import tt from '../toutiao2vue/tt';
-  export default OnekitPage({
-    components: { video },
-  }, {
+  export default OnekitPage(null, {
 
     data: {
       tempFilePath: '',

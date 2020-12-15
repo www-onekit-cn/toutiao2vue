@@ -1,6 +1,6 @@
 {
   "name": "toutiao2vue",
-  "version": "1.0.9",
+  "version": "1.1.0",
   "main": "dist/index/index.js",
   "files": [
     "dist"
@@ -11,18 +11,10 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
-    "axios": "^0.21.0",
     "clipboard": "^2.0.6",
-    "core-js": "2.6.11",
-    "file-saver": "latest",
-    "html2canvas": "^1.0.0-rc.7",
-    "jquery": "^3.5.1",
-    "jquery-confirm": "^3.3.4",
-    "jszip": "latest",
-    "mobile-detect": "^1.4.4",
     "oneutil": "^2.0.2",
-    "toutiao2html": "^1.0.6",
-    "vconsole": "^3.3.4",
+    "toutiao2html": "^1.0.8",
+    "jquery": "3.5.1",
     "vue": "^2.6.11",
     "vue-router": "^3.4.3"
   },

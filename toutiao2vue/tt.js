@@ -1,5 +1,5 @@
-import $ from 'jquery'
 import Vue from 'vue'
+import $ from 'jquery'
 import TT from 'toutiao2html/tt'
 import PROMISE from 'oneutil/PROMISE'
 import OneKit from './js/OneKit'
