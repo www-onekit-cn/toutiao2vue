@@ -34,8 +34,14 @@
     },
 
     onLoad: function () {
-
-
+      tt.chooseImage({
+        success: res => {
+          console.log(res)
+        },
+        fail: err => {
+          console.log(err)
+        }
+      })
     }
 
 
