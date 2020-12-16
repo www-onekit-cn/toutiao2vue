@@ -735,4 +735,4 @@ import './js/PrevewImage'
     
       }
 }
-export default new VueTT(Vue.prototype)
+export default new VueTT(() => Vue.prototype)

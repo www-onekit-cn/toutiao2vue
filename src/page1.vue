@@ -2,18 +2,13 @@
   <page id="app">
 
 
-      <onekit-text>xxx</onekit-text>
-      <!-- <onekit-video :src="tempFilePath"></onekit-video>
-      <onekit-image :src="origintempFilePath"></onekit-image> -->
-      <!-- <img src="./kiko_20200309184916.jpg" alt=""> -->
-      <!-- <video src=""></video> -->
+    <onekit-text>xxx</onekit-text>
 
   </page>
 </template>
 
 <script>
   import OnekitPage from '../toutiao2vue/OnekitPage';
-  import video from '../toutiao2vue/ui/video/video.vue';
   import tt from '../toutiao2vue/tt';
   export default OnekitPage(null, {
 
@@ -38,29 +33,9 @@
 
     },
 
-    onLoad: function() {
+    onLoad: function () {
 
-      // tt.previewImage({
-      // current: 'https://dss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=1720212253,1779103205&fm=115&gp=0.jpg', // 当前显示图片的http链接
-      // urls: ['https://dss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=1720212253,1779103205&fm=115&gp=0.jpg', 'https://dss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=1720212253,1779103205&fm=115&gp=0.jpg'],
-      // success: res => {
-      // console.log(res)
-      // } // 需要预览的图片http链接列表
-      // })
 
-      // tt.saveImageToPhotosAlbum({
-      // filePath: 'https://dss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=1720212253,1779103205&fm=115&gp=0.jpg',
-      // success: res => {
-
-      // console.log(res)
-      // }
-      // })
-
-      tt.getVideoInfo({
-        success: res => {
-          console.log(res)
-        }
-      })
     }
 
 
