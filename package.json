@@ -13,7 +13,7 @@
   "dependencies": {
     "clipboard": "^2.0.6",
     "oneutil": "^2.0.2",
-    "toutiao2html": "^1.0.8",
+    "toutiao2html": "^1.0.9",
     "jquery": "3.5.1",
     "vue": "^2.6.11",
     "vue-router": "^3.4.3"

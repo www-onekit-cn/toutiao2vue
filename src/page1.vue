@@ -36,10 +36,20 @@
     onLoad: function () {
       tt.chooseImage({
         success: res => {
-          console.log(res)
+          console.log('您选择的图片为', res.tempFilePaths)
+          tt.uploadFile({
+            url: "http://192.168.146.1:3000/file_upload",
+            filePath: res.tempFilePaths[0],
+            success: res => {
+              console.log('上传成功:', res)
+            },
+            fail: err => {
+              console.log('上传失败', err)
+            }
+          })
         },
         fail: err => {
-          console.log(err)
+          console.error(err)
         }
       })
     }
