@@ -3,7 +3,6 @@ import Router from 'vue-router';
 Vue.use(Router);
 import URL from 'oneutil/URL'
 import $ from 'jquery'
-import TheKit from 'toutiao2html/js/TheKit';
 import OneKit from '../toutiao2vue/js/OneKit'
 import tabs from '../toutiao2vue/pages/tabs'
 import activity from '../toutiao2vue/pages/activity'
@@ -32,16 +31,16 @@ Vue.config.errorHandler = onekit_onError
 
 if (Vue.prototype.onThemeChange) {
   Object.defineProperty(Vue.prototype.THEME, 'theme', {
-    get: function() {
+    get: function () {
       return Vue.prototype.THEME;
     },
 
-    set: function(newValue) {
+    set: function (newValue) {
       Vue.prototype.onThemeChange(newValue)
     }
   })
 }
-window.addEventListener('unhandledrejection', function() {
+window.addEventListener('unhandledrejection', function () {
   if (Vue.prototype.onUnhandledRejection) {
     window.addEventListener('unhandledrejection', vue_e => {
       const wx_reason = vue_e.reason
@@ -50,7 +49,7 @@ window.addEventListener('unhandledrejection', function() {
     })
   }
 })
-document.addEventListener("visibilitychange", function() {
+document.addEventListener("visibilitychange", function () {
 
   if (document.hidden) {
     if (Vue.prototype.onAudioInterruptionBegin) {
@@ -114,7 +113,7 @@ document.addEventListener("visibilitychange", function() {
 
 
 //////////////////////////
-const screen_width = TheKit.isMobile() ? (($(window).width()) - 0) : 750;
+const screen_width = OneKit.isMobile() ? (($(window).width()) - 0) : 750;
 $("body").css('--screen-width', screen_width + "px");
 //
 let router = {
