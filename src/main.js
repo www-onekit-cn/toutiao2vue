@@ -4,6 +4,7 @@ Vue.use(Router);
 import URL from 'oneutil/URL'
 import $ from 'jquery'
 import OneKit from '../toutiao2vue/js/OneKit'
+import TheKit from 'toutiao2html/js/TheKit'
 import tabs from '../toutiao2vue/pages/tabs'
 import activity from '../toutiao2vue/pages/activity'
 import APP_JSON from './app.json.js'
@@ -113,7 +114,7 @@ document.addEventListener("visibilitychange", function () {
 
 
 //////////////////////////
-const screen_width = OneKit.isMobile() ? (($(window).width()) - 0) : 750;
+const screen_width = TheKit.isMobile() ? (($(window).width()) - 0) : 750;
 $("body").css('--screen-width', screen_width + "px");
 //
 let router = {
