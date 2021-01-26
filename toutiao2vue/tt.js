@@ -730,6 +730,7 @@ class VueTT extends TT {
     $("#viewport").remove();
     $(".xsw_showLoading").remove();
   }
+
   previewMedia(wx_object) {
     const wx_sources = wx_object.sources
     const wx_current = wx_object.current || 0
@@ -752,6 +753,28 @@ class VueTT extends TT {
       SUCCESS(res)
     }, wx_success, wx_fail, wx_complete)
 
+  }
+
+  chooseLocation(options) {
+    const latitude = options.latitude || ''
+    const longitude = options.longitude || ''
+    const {  success, fail, complete} = options
+    options = null
+    /////////////////////////////////
+ 
+    PROMISE(SUCCESS => {
+      console.log("chooseLocation",longitude,latitude)
+      this.fn_global().ROOT.$router.push({
+        path:`/pages/chooselocation?longitude=${longitude}&longitude=${latitude}`
+      })
+      
+      const res = {
+
+      }
+
+      SUCCESS(res)
+
+    }, success, fail, complete)
   }
 
 

@@ -9,12 +9,6 @@ export default function(PAGE_JSON, object) {
       APP_JSON = Vue.prototype.APP_JSON;
       Vue.prototype.CURRENT = this
       this.data = this.$data;
-      if (this["onLoad"]) {
-        const query = this.$route.query
-        this.eventChannelID = query.eventChannelID
-        delete query["eventChannelID"]
-        this["onLoad"]({ query });
-      }
     },
     destroy() {
       if (this["onUnload"]) {
@@ -58,6 +52,14 @@ export default function(PAGE_JSON, object) {
         }
       }
       this.$emit('updatewindowjson', {WINDOW_JSON});
+      //
+      if (this["onLoad"]) {
+        const query = this.$route.query
+        this.eventChannelID = query.eventChannelID
+        delete query["eventChannelID"]
+        this["onLoad"]({ query });
+      }
+      //
       if (this["onReady"]) {
         this["onReady"]();
       }

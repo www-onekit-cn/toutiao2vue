@@ -5,8 +5,9 @@ import URL from 'oneutil/URL'
 import $ from 'jquery'
 import OneKit from '../toutiao2vue/js/OneKit'
 import TheKit from 'toutiao2html/js/TheKit'
-import tabs from '../toutiao2vue/pages/tabs'
 import activity from '../toutiao2vue/pages/activity'
+import chooselocation from '../toutiao2vue/pages/chooselocation'
+import tabs from '../toutiao2vue/pages/tabs'
 import APP_JSON from './app.json.js'
 import PROJECT_JSON from './project.config.json.js'
 import toutiao2vue from "toutiao2vue"
@@ -122,10 +123,12 @@ let router = {
   routes: [{
     path: '/',
     redirect: `/${APP_JSON.pages[0]}`,
+  },{
+    path: '/pages/chooselocation',
+    component: () => chooselocation
   }]
 };
 //
-let tabPages = [];
 let tabBar = APP_JSON["tabBar"];
 let entry
 if (tabBar) {
@@ -142,7 +145,6 @@ if (tabBar) {
         return {}
       }
     });
-    tabPages.push(pagePath);
   }
   router.routes[0].component = tabs;
   router.routes[0].children = children;
@@ -155,7 +157,7 @@ if (APP_JSON.pages.includes(ENTRY.path.substr(1))) {
 }
 //
 for (let page of APP_JSON.pages) {
-  if (tabBar && tabPages.indexOf(page) >= 0) {
+  if (tabBar && tabBar.list.includes(page)) {
     continue;
   }
   router.routes.push({
@@ -163,6 +165,7 @@ for (let page of APP_JSON.pages) {
     component: () => import(`@/${page}.vue`)
   });
 }
+console.log(router)
 ////////////////////////////
 
 const wx_path = entry

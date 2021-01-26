@@ -99,7 +99,7 @@
       this.index = 0;
       console.warn("current is empty,it will be the first value of urls!");
     } else {
-      var index = urls.indexOf(current);
+      var index = urls.includes(current);
       if (index < 0) {
         index = 0;
         console.warn("current isnot on urls,it will be the first value of urls!");
