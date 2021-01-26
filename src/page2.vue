@@ -1,10 +1,10 @@
 <template>
-  <page id="app">
+  <onekit-page id="app">
     <h2>hello,world</h2>
     <onekit-view @Tap="navigateBack_click">tt.navigateBack</onekit-view>
     <onekit-view @Tap="reLaunch_click">tt.reLaunch</onekit-view>
 
-  </page>
+  </onekit-page>
 </template>
 
 <script>
@@ -20,17 +20,19 @@
     //     console.log("acceptDataFromOpenerPage", data)
     //   })
     // },
-    navigateBack_click: function() {
+    navigateBack_click: function () {
       console.log('返回上一级')
       tt.navigateBack({
         delta: 1
       });
     },
-    reLaunch_click: function() {
+    reLaunch_click: function () {
       console.log('re...')
       tt.reLaunch({
         url: '/page1',
-        success: (res) => { console.log(res) },
+        success: (res) => {
+          console.log(res)
+        },
         fail: console.log
       });
     },

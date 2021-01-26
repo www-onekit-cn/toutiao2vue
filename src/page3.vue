@@ -1,112 +1,88 @@
 <template>
-  <page id="app">
+  <onekit-page id="app">
     <onekit-view onekit-class="btn-area">
 
 
-      <onekit-view @Tap="getSystemInfo()"
-                   onekit-class='test_children success'>
+      <onekit-view @Tap="getSystemInfo()" onekit-class='test_children success'>
         getSystemInfo
       </onekit-view>
 
       <onekit-view onekit-class="test_title">navigate组件type</onekit-view>
 
-      <onekit-navigator onekit-class='test_children success'
-                        url="page2"
-                        open-type='navigate'>
+      <onekit-navigator onekit-class='test_children success' url="page2" open-type='navigate'>
         navigate
       </onekit-navigator>
 
-      <onekit-navigator onekit-class='test_children success'
-                        url="page2"
-                        open-type='redirect'>
+      <onekit-navigator onekit-class='test_children success' url="page2" open-type='redirect'>
         redirect
       </onekit-navigator>
 
-      <onekit-navigator onekit-class='test_children success'
-                        url="page2"
-                        open-type='switchTab'>
+      <onekit-navigator onekit-class='test_children success' url="page2" open-type='switchTab'>
         switchTab
       </onekit-navigator>
 
-      <onekit-navigator onekit-class='test_children success'
-                        url="page2"
-                        open-type='reLaunch'>
+      <onekit-navigator onekit-class='test_children success' url="page2" open-type='reLaunch'>
         reLaunch
       </onekit-navigator>
 
-      <onekit-navigator onekit-class='test_children success'
-                        delta='1'
-                        open-type='navigateBack'>
+      <onekit-navigator onekit-class='test_children success' delta='1' open-type='navigateBack'>
         navigateBack
       </onekit-navigator>
 
-      <onekit-navigator onekit-class='test_children success'
-                        url="page2"
-                        open-type='exit'>
+      <onekit-navigator onekit-class='test_children success' url="page2" open-type='exit'>
         exit
       </onekit-navigator>
       <onekit-view onekit-class="test_title">界面API</onekit-view>
-      <onekit-view @Tap="showToast()"
-                   onekit-class='test_children success'>
+      <onekit-view @Tap="showToast()" onekit-class='test_children success'>
         showToast
       </onekit-view>
-      <onekit-view @Tap="showModal()"
-                   onekit-class='test_children success'>
+      <onekit-view @Tap="showModal()" onekit-class='test_children success'>
         showModal
       </onekit-view>
-      <onekit-view @Tap="showLoading()"
-                   onekit-class='test_children wrong'>
+      <onekit-view @Tap="showLoading()" onekit-class='test_children wrong'>
         showLoading
       </onekit-view>
-      <onekit-view @Tap="showActionSheet()"
-                   onekit-class='test_children success'>
+      <onekit-view @Tap="showActionSheet()" onekit-class='test_children success'>
         showActionSheet
       </onekit-view>
-      <onekit-view @Tap="hideToast()"
-                   onekit-class='test_children success'>
+      <onekit-view @Tap="hideToast()" onekit-class='test_children success'>
         hideToast
       </onekit-view>
-      <onekit-view @Tap="hideLoading()"
-                   onekit-class='test_children success'>
+      <onekit-view @Tap="hideLoading()" onekit-class='test_children success'>
         hideLoading
       </onekit-view>
 
-      <onekit-view @Tap="enableAlertBeforeUnload()"
-                   onekit-class='test_children err'>
+      <onekit-view @Tap="enableAlertBeforeUnload()" onekit-class='test_children err'>
         enableAlertBeforeUnload
       </onekit-view>
 
-      <onekit-view @Tap="disableAlertBeforeUnload()"
-                   onekit-class='test_children err'>
+      <onekit-view @Tap="disableAlertBeforeUnload()" onekit-class='test_children err'>
         disableAlertBeforeUnload
       </onekit-view>
 
       <onekit-view onekit-class="test_title">导航栏API</onekit-view>
 
-      <onekit-view @Tap="showNavigationBarLoading()"
-                   onekit-class='test_children err'>
+      <onekit-view @Tap="showNavigationBarLoading()" onekit-class='test_children err'>
         showNavigationBarLoading
       </onekit-view>
 
-      <onekit-view @Tap="setNavigationBarTitle"
-                   onekit-class="test_children success">
+      <onekit-view @Tap="setNavigationBarTitle" onekit-class="test_children success">
         setNavigationBarTitle
       </onekit-view>
 
-      <onekit-view @Tap="setNavigationBarColor"
-                   onekit-class="test_children">
+      <onekit-view @Tap="setNavigationBarColor" onekit-class="test_children">
         setNavigationBarColor
       </onekit-view>
     </onekit-view>
 
-  </page>
+  </onekit-page>
 </template>
 
 <script>
   import OnekitPage from '../toutiao2vue/OnekitPage';
   import tt from '../toutiao2vue/tt'
   export default OnekitPage({}, {
-    onLoad: function(options) {
+    onLoad: function (options) {
       this.setData({
         title: options.title
       })
@@ -114,7 +90,7 @@
         title: '加载中',
       })
 
-      setTimeout(function() {
+      setTimeout(function () {
         tt.hideLoading()
       }, 2000)
 

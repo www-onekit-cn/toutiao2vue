@@ -9,11 +9,11 @@
  * @FilePath: \toutiao2vue\src\page1.vue
 -->
 <template>
-  <page id="app">
+  <onekit-page id="app">
 
     <onekit-text>xxx</onekit-text>
 
-  </page>
+  </onekit-page>
 </template>
 
 <script>
