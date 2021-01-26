@@ -125,7 +125,7 @@ let router = {
     redirect: `/${APP_JSON.pages[0]}`,
   },{
     path: '/pages/chooselocation',
-    component: () => chooselocation
+    component:  chooselocation
   }]
 };
 //
@@ -165,7 +165,6 @@ for (let page of APP_JSON.pages) {
     component: () => import(`@/${page}.vue`)
   });
 }
-console.log(router)
 ////////////////////////////
 
 const wx_path = entry

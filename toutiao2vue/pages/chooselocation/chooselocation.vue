@@ -4,7 +4,7 @@
  * @WeChat: wj826036
  * @Motto: 求知若渴，虚心若愚
  * @Description: 
- * @LastEditTime: 2021-01-26 17:42:54
+ * @LastEditTime: 2021-01-26 18:01:54
  * @Version: 1.0
  * @FilePath: \toutiao2vue\toutiao2vue\pages\chooselocation\chooselocation.vue
 -->
@@ -20,7 +20,7 @@
       const {
         longitude,
         latitudes
-      } = this.$query
+      } = this.$route.query
       //////////////////////////////
       console.log("xxx")
       let url = `https://m.amap.com/picker/?`
