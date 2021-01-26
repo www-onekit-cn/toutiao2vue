@@ -765,7 +765,7 @@ class VueTT extends TT {
     PROMISE(SUCCESS => {
       console.log("chooseLocation",longitude,latitude)
       this.fn_global().ROOT.$router.push({
-        path:`/pages/chooselocation?longitude=${longitude}&longitude=${latitude}`
+        path:`/pages/chooselocation?longitude=${longitude}&latitude=${latitude}`
       })
       
       const res = {
