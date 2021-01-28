@@ -4,7 +4,7 @@
  * @WeChat: wj826036
  * @Motto: 求知若渴，虚心若愚
  * @Description: 
- * @LastEditTime: 2021-01-26 18:49:36
+ * @LastEditTime: 2021-01-28 10:41:21
  * @Version: 1.0
  * @FilePath: \toutiao2vue\toutiao2vue\pages\chooselocation\chooselocation.vue
 -->
@@ -36,8 +36,14 @@
       iframe_load() {
         window.addEventListener("message", function (e) {
           console.log('您选择了:', e.data)
-
-
+          const data = {
+            errMsg: 'ok',
+            name: e.data.name,
+            location: e.data.location,
+            address: e.data.address
+          }
+          this.$emit('chooselocation', data)
+          this.$route.go(-1)
         }.bind(this), false);
         var iframe = document.getElementById('iframe').contentWindow;
         iframe.postMessage('hello', `https://m.amap.com/picker/`)
