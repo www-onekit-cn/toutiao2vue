@@ -1,9 +1,5 @@
 <template>
-  <div
-       :class="['onekit-navigator',onekitClass]"
-       :style="onekitStyle"
-       :id="onekitId"
-       @click="div_click">
+  <div :class="['onekit-navigator',onekitClass]" :style="onekitStyle" :id="onekitId" @click="div_click">
     <slot></slot>
   </div>
 </template>
@@ -11,7 +7,7 @@
 <script>
   import tt from '../../tt'
   import toutiao_behavior from "../../behaviors/toutiao_behavior"
-import onekit_behavior from "../../behaviors/onekit_behavior"
+  import onekit_behavior from "../../behaviors/onekit_behavior"
   export default {
     name: "onekit-navigator",
     mixins: [toutiao_behavior, onekit_behavior],
