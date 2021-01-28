@@ -4,7 +4,7 @@
  * @WeChat: wj826036
  * @Motto: 求知若渴，虚心若愚
  * @Description: 
- * @LastEditTime: 2021-01-28 10:41:21
+ * @LastEditTime: 2021-01-28 11:26:47
  * @Version: 1.0
  * @FilePath: \toutiao2vue\toutiao2vue\pages\chooselocation\chooselocation.vue
 -->
@@ -23,11 +23,19 @@
       url() {
         const {
           longitude,
-          latitude
+          latitude,
+          zoom,
+          keyword,
         } = this.$route.query
-        let url = "https://m.amap.com/picker/?key=0c805d60efe6c4e05d13b93e4e48a129";
+        let url = "https://m.amap.com/picker/?key=0c805d60efe6c4e05d13b93e4e48a129"
         if (longitude && latitude) {
           url += `&center=${longitude},${latitude}`
+        }
+        if (zoom) {
+          url += `zoom=${zoom}`
+        }
+        if (keyword) {
+          url += `keyword=${keyword}`
         }
         return url;
       }

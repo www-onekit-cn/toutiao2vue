@@ -776,6 +776,30 @@ class VueTT extends TT {
     }, success, fail, complete)
   }
 
+  openLocation(options) {
+    const latitude = options.latitude
+    const longitude = options.longitude
+    const scale = options.scale
+    const name = options.name
+    const address = options.address
+    const success = options.success
+    const fail = options.fail
+    const complete = options.complete
+    options = null
+
+    PROMISE(SUCCESS => {
+      this.fn_global().ROOT.$router.push({
+        path:`/pages/chooselocation?longitude=${longitude}&latitude=${latitude}&zoom=${scale}&keyword=${name},${address}`
+      })
+      
+      const res = {
+
+      }
+
+      SUCCESS(res)
+
+    }, success, fail, complete)
+  }
 
 }
 export default new VueTT(() => Vue.prototype)
