@@ -48,7 +48,13 @@
       'object-fit': {
         type: String,
         default: 'contain'
-      }
+      },
+      'play-btn-position': {
+        type: String,
+        default: 'cenetr'
+      },
+      'pre-roll-unit-id': String,
+      'post-roll-unit-id': String
     },
     computed: {
       fit() {
@@ -76,6 +82,17 @@
       this.video.addEventListener('webkitfullscreenchange', () => {
         this._trigger_fullscreenchange()
       })
+      this.video.addEventListener('waiting', () => {
+        this._trigger_waiting()
+      })
+      this.video.addEventListener('loadedmetadata', () => {
+        const data = {
+          width: this.video.videoWidth,
+          height: this.video.videoHeight,
+          duration: this.video.duration
+        }
+        this._trugger_loadedmetadata(data)
+      })
     },
     methods: {
       _trigger_play() {
@@ -91,10 +108,35 @@
         this.$emit('error')
       },
       _trigger_timeupdate() {
-        this.$emit('bindtimeupdate')
+        this.$emit('timeupdate')
       },
       _trigger_fullscreenchange() {
-        this.$emit('bindfullscreenchange')
+        this.$emit('fullscreenchange')
+      },
+      _trigger_waiting() {
+        this.$emit('waitting')
+      },
+      _trigger_adstart(e) {
+        e.detail = { adType: 'preRollAd' | 'postRollAd' }
+        this.$emit('adstart', e)
+      },
+      _trigger_adended(e) {
+        e.detail = { adType: 'preRollAd' | 'postRollAd' }
+        this.$emit('adended', e)
+      },
+      _trgger_adclose(e) {
+        e.detail = { adType: 'preRollAd' | 'postRollAd' }
+        this.$emit('adclose', e)
+      },
+      _trigger_aderror(e) {
+        e.detail = { adType: 'preRollAd' | 'postRollAd' }
+        this.$emit('aderror', e)
+      },
+      _trugger_loadedmetadata(data) {
+        let { width, height, duration } = data
+        let e = {}
+        e.detail = { width, height, duration }
+        this.$emit('loadedmetadata', e)
       }
     }
   }
