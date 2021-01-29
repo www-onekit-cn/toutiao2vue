@@ -4,14 +4,14 @@
  * @WeChat: wj826036
  * @Motto: 求知若渴，虚心若愚
  * @Description: 
- * @LastEditTime: 2021-01-28 18:25:11
+ * @LastEditTime: 2021-01-29 14:21:49
  * @Version: 1.0
  * @FilePath: \toutiao2vue\src\page1.vue
 -->
 <template>
   <onekit-page id="app">
 
-    <onekit-image :src="src" mode="widthFix">xxx</onekit-image>
+    <onekit-video :src="src" @play="test"></onekit-video>
 
   </onekit-page>
 </template>
@@ -21,7 +21,10 @@
   // import tt from '../toutiao2vue/tt'
   export default OnekitPage(null, {
     data: {
-      src: 'https://dss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=2612785265,3321984122&fm=26&gp=0.jpg'
+      src: 'http://vodkgeyttp8.vod.126.net/cloudmusic/9652/core/5965/ea1dc8b6835211f3ae695f48a3d27b1a.mp4?wsSecret=6308e4fbedd8712d0b632d09b96a5732&wsTime=1611911002'
+    },
+    test() {
+      console.log('ok')
     }
   });
 </script>
