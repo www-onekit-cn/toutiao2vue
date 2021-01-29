@@ -35,12 +35,35 @@
     mounted() {
       const videoContext = this.$refs.vedioDom
       this.video = videoContext
-      this.bindplay()
+      this._bindplay()
+      this._bindpause()
+      this._bindended()
+      this._binderror()
     },
     methods: {
-      bindplay() {
+      _bindplay() {
         this.video.addEventListener('play', () => {
           this.$emit('bindplay')
+        })
+      },
+      _bindpause() {
+        this.video.addEventListener('pause', () => {
+          this.$emit('bindpause')
+        })
+      },
+      _bindended() {
+        this.video.addEventListener('ended', () => {
+          this.$emit('bindended')
+        })
+      },
+      _binderror() {
+        this.video.addEventListener('error', () => {
+          this.$emit('binderror')
+        })
+      },
+      _bindtimeupdate() {
+        this.video.addEventListener('timeupdate', () => {
+          this.$emit('bindtimeupdate')
         })
       }
     }
