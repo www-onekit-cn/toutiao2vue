@@ -1,17 +1,8 @@
-<!--
- * @Autor: YeWei Wang
- * @Date: 2021-01-14 13:53:32
- * @WeChat: wj826036
- * @Motto: 求知若渴，虚心若愚
- * @Description: 
- * @LastEditTime: 2021-01-29 12:19:11
- * @Version: 1.0
- * @FilePath: \toutiao2vue\toutiao2vue\ui\image\image.vue
--->
 <template>
   <div :class="['onekit-image',onekitClass]"
        :style="onekitStyle"
-       :id="onekitId">
+       :id="onekitId"
+       v-show="lazy">
     <div class="img"
          :style="{
 						backgroundImage: `url(${src})`,
@@ -20,7 +11,8 @@
 						backgroundPosition: position ? position : '',
 						backgroundSize: bgcover,
             backgroundRepeat: 'no-repeat',           
-            }">
+            }"
+         ref="img">
     </div>
     <slot></slot>
   </div>
@@ -32,6 +24,9 @@
   export default {
     name: "onekit-image",
     mixins: [toutiao_behavior, onekit_behavior],
+    data: () => ({
+      lazy: true
+    }),
     props: {
       'src': {
         type: String,
@@ -45,8 +40,34 @@
         default: false
       }
     },
+    mounted() {
+      const dom = this.$refs.img
+      if (dom) {
+        this.$emit('bindload')
+      } else {
+        this.$emit('binderror')
+      }
+      window.addEventListener('scroll', this.lazyLoadfn)
+    },
     methods: {
+      lazyLoadfn() {
+        if (!this['lazy-load']) return
+        const height = document.body.offsetHeight
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
+        const imgbox = this.$$refs.img
 
+        let scrolHeight, offsetTop, top, bottom
+        scrolHeight = imgbox.scrolHeight
+        offsetTop = imgbox.offsetTop
+        top = offsetTop - height > 0 ? offsetTop - height : 0
+        bottom = scrolHeight + offsetTop
+        if (scrollTop >= top && scrollTop <= bottom) {
+          this.lazy = true
+        } else {
+          console.log('hide')
+          this.lazy = false
+        }
+      }
     },
     computed: {
       bgcover() {
