@@ -8,9 +8,10 @@
              vid="amap-vue"
              :center="center"
              :zoom="scale - 1">
-      <el-amap-marker v-for="(m, i) in markers"
+      <el-amap-marker v-for="(m, i) in tt_position"
                       :key="i"
-                      :position="m.position"></el-amap-marker>
+                      :position="m.position">
+      </el-amap-marker>
     </el-amap>
     <slot></slot>
   </div>
@@ -54,12 +55,22 @@
       polyline: Array,
       'include-points': Array
     },
-    mounted() {
-      // console.log(this.tmarker)
-    },
+    mounted() {},
     computed: {
       center() {
         return [this.longitude, this.latitude]
+      },
+      tt_position() {
+        let tt_position = []
+        for (let key in this.markers) {
+          const longitude = this.markers[key].longitude
+          const latitude = this.markers[key].latitude
+          const position = [longitude, latitude]
+          let obj = {}
+          obj[`position`] = position
+          tt_position.push(obj)
+        }
+        return tt_position
       }
     }
   }
