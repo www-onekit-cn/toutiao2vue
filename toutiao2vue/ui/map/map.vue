@@ -8,6 +8,14 @@
              vid="amap-vue"
              :center="center"
              :zoom="scale - 1">
+      <el-amap-circle v-for="m of tt_circles"
+                      :key="`${m}`"
+                      :center="m.center"
+                      :radius="m.radius"
+                      fill-opacity="0.2"
+                      strokeWeight="1">
+
+      </el-amap-circle>
       <el-amap-marker v-for="(m, i) in tt_position"
                       :key="i"
                       :position="m.position"
@@ -71,6 +79,17 @@
           tt_position.push(obj)
         }
         return tt_position
+      },
+      tt_circles() {
+        let tt_circles = []
+        for (let key in this.circles) {
+          const { longitude, latitude, radius } = this.circles[key]
+          let obj = []
+          obj['center'] = [longitude, latitude]
+          obj['radius'] = radius
+          tt_circles.push(obj)
+        }
+        return tt_circles
       }
     }
   }
