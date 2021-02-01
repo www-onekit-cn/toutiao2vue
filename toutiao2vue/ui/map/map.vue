@@ -23,7 +23,8 @@
       <el-amap-marker v-for="(m, i) in tt_position"
                       :key="i"
                       :position="m.position"
-                      :title="m.title">
+                      :title="m.title"
+                      :events="m.events">
       </el-amap-marker>
     </el-amap>
     <slot></slot>
@@ -87,10 +88,21 @@
       tt_position() {
         let tt_position = []
         for (let key in this.markers) {
-          const { longitude, latitude, title } = this.markers[key]
+          const { longitude, latitude, title, id, iconPath } = this.markers[key]
           let obj = {}
           obj[`position`] = [longitude, latitude]
           obj[`title`] = title
+          obj[`icon`] = iconPath
+          obj['events'] = {
+            click: e => {
+              e['detail'] = {
+                markerId: id,
+                latitude: e.lnglat.lat,
+                longitude: e.lnglat.lng
+              }
+              this.$emit('markertap', e)
+            }
+          }
           tt_position.push(obj)
         }
         return tt_position
@@ -102,6 +114,7 @@
           let obj = []
           obj['center'] = [longitude, latitude]
           obj['radius'] = radius
+
           tt_circles.push(obj)
         }
         return tt_circles
