@@ -96,7 +96,7 @@
     },
     methods: {
       _trigger_play() {
-        this.$emit('play', {})
+        this.$emit('play')
       },
       _trigger_pause() {
         this.$emit('pause')

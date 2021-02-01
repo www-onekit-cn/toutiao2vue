@@ -7,7 +7,8 @@
              class="amap-box"
              vid="amap-vue"
              :center="center"
-             :zoom="scale - 1">
+             :zoom="scale - 1"
+             :events="events">
       <el-amap-circle v-for="m of tt_circles"
                       :key="`${m}`"
                       :center="m.center"
@@ -43,7 +44,18 @@
     name: "onekit-map",
     mixins: [toutiao_behavior, onekit_behavior],
     data() {
-      return {}
+      const self = this
+      return {
+        events: {
+          'click': e => {
+            e['detail'] = {
+              latitude: e.lnglat.lat,
+              longitude: e.lnglat.lng
+            }
+            self.$emit('tap', e)
+          }
+        }
+      }
     },
     props: {
       longitude: {
@@ -108,7 +120,6 @@
           polyline['strokeWeight'] = width
           dottedLine ? polyline['strokeStyle'] = 'dashed' : polyline['strokeStyle'] = 'solid'
         }
-        console.log(polyline)
         return polyline
       }
     }

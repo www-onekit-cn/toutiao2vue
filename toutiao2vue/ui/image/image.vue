@@ -54,7 +54,7 @@
         if (!this['lazy-load']) return
         const height = document.body.offsetHeight
         const scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
-        const imgbox = this.$$refs.img
+        const imgbox = this.$refs.img
 
         let scrolHeight, offsetTop, top, bottom
         scrolHeight = imgbox.scrolHeight
