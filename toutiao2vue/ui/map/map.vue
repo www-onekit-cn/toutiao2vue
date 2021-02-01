@@ -16,6 +16,9 @@
                       strokeWeight="1">
 
       </el-amap-circle>
+      <el-amap-polyline :path="tt_polyline.path">
+
+      </el-amap-polyline>
       <el-amap-marker v-for="(m, i) in tt_position"
                       :key="i"
                       :position="m.position"
@@ -90,6 +93,23 @@
           tt_circles.push(obj)
         }
         return tt_circles
+      },
+      tt_polyline() {
+        let polyline = {}
+        for (let key in this.polyline) {
+          const { points, color, width, dottedLine } = this.polyline[key]
+          polyline['path'] = []
+          for (let points_key in points) {
+            const { longitude, latitude } = points[points_key]
+            const path = [longitude, latitude]
+            polyline['path'].push(path)
+          }
+          polyline['strokeColor'] = color
+          polyline['strokeWeight'] = width
+          dottedLine ? polyline['strokeStyle'] = 'dashed' : polyline['strokeStyle'] = 'solid'
+        }
+        console.log(polyline)
+        return polyline
       }
     }
   }
