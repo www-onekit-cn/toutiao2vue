@@ -29,6 +29,7 @@
     "toutiao2html": "^1.3.0",
     "vconsole": "^3.3.4",
     "vue": "^2.6.11",
+    "vue-amap": "^0.5.10",
     "vue-router": "^3.4.3"
   },
   "devDependencies": {

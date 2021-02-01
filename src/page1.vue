@@ -11,7 +11,7 @@
 <template>
   <onekit-page id="app">
 
-    <onekit-video :src="src" @play="test"></onekit-video>
+    <onekit-map></onekit-map>
 
   </onekit-page>
 </template>
