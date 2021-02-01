@@ -2,7 +2,8 @@
   <div
        :class="['onekit-scroll-view',onekitClass]"
        :style="onekitStyle"
-       :id="onekitId">
+       :id="onekitId"
+       @touchstart="scroll">
     <slot></slot>
   </div>
 </template>
@@ -17,8 +18,11 @@
 
 
     },
+    mounted() {},
     methods: {
-
+      scroll() {
+        this.$emit('scroll')
+      }
     }
   }
 </script>
@@ -27,5 +31,6 @@
   .onekit-scroll-view {
     width: 100%;
     height: 200px;
+    overflow: scroll;
   }
 </style>
