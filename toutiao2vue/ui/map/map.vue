@@ -7,10 +7,10 @@
              class="amap-box"
              vid="amap-vue"
              :center="center"
-             :zoom="scale">
-      <el-map-marker v-for="(item, index) in markers"
-                     :key="index">
-      </el-map-marker>
+             :zoom="scale - 1">
+      <el-amap-marker v-for="(m, i) in markers"
+                      :key="i"
+                      :position="m.position"></el-amap-marker>
     </el-amap>
     <slot></slot>
   </div>
@@ -30,9 +30,7 @@
     name: "onekit-map",
     mixins: [toutiao_behavior, onekit_behavior],
     data() {
-      return {
-
-      }
+      return {}
     },
     props: {
       longitude: {
@@ -57,7 +55,7 @@
       'include-points': Array
     },
     mounted() {
-
+      // console.log(this.tmarker)
     },
     computed: {
       center() {
