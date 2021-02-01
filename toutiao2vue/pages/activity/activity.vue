@@ -1,5 +1,5 @@
 <template>
-  <div id="app" style="height:100%;overflow:hidden;display: flex;flex-direction: column;">
+  <div id="app" style="height:100%;display: flex;flex-direction: column;">
     <div
          id="onekitwx_navigationBar"
          :style="{'display':'flex','justify-content':'space-between','align-item':'center','flex-shrink':0,background:WINDOW_JSON.navigationBarBackgroundColor}">
@@ -51,11 +51,9 @@
         </div>
       </template>
     </div>
-    <div style="flex-grow:2;overflow:scroll;">
-      <router-view @updatewindowjson="activity_updateWindowJson"></router-view>
-    </div>
+    <router-view style="flex-grow:2;overflow:scroll;" @updatewindowjson="activity_updateWindowJson"></router-view>
 
-    <div>
+    <div style="display:none;">
       <span data-clipboard-action="copy" @click="copyLink"></span>
     </div>
 
@@ -85,10 +83,10 @@
       copyLink() {
         let _this = this;
         let clipboard = new this.clipboard(".cobyOrderSn");
-        clipboard.on('success', function() {
+        clipboard.on('success', function () {
           _this.$toast("复制成功")
         });
-        clipboard.on('error', function() {
+        clipboard.on('error', function () {
           _this.$toast("复制失败")
         });
       }

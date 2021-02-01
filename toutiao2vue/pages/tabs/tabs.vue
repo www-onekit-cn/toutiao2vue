@@ -1,6 +1,6 @@
 <template>
-  <div id="app">
-    <router-view @updatewindowjson="tabPage_updateWindowJson" @switchtab="tabPage_switchTab" />
+  <div id="app" style="height:100%;display:flex; flex-direction:column;">
+    <router-view @updatewindowjson="tabPage_updateWindowJson" @switchtab="tabPage_switchTab" style="flex-grow:2;overflow:scroll;" />
     <div class="tab-bar">
       <span :ref="tab.url" v-for="tab in tabs" class="item" @click="tab_click(tab.url)" :key="tab.pagePath">
         <img :src="$route.path.includes(tab.url) ? tab.selected : tab.normal" alt />
@@ -71,8 +71,6 @@
     display: flex;
     justify-content: space-around;
     align-items: center;
-    position: fixed;
-    bottom: 0;
     background-color: #fff;
     border-top: 1px solid #eee;
   }
