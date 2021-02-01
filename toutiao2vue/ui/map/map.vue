@@ -114,7 +114,6 @@
           let obj = []
           obj['center'] = [longitude, latitude]
           obj['radius'] = radius
-
           tt_circles.push(obj)
         }
         return tt_circles
