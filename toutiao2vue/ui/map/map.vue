@@ -8,6 +8,9 @@
              vid="amap-vue"
              :center="center"
              :zoom="scale">
+      <el-map-marker v-for="(item, index) in markers"
+                     :key="index">
+      </el-map-marker>
     </el-amap>
     <slot></slot>
   </div>
@@ -58,7 +61,7 @@
     },
     computed: {
       center() {
-        return [this.latitude, this.longitude]
+        return [this.longitude, this.latitude]
       }
     }
   }
