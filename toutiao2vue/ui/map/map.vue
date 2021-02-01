@@ -10,7 +10,8 @@
              :zoom="scale - 1">
       <el-amap-marker v-for="(m, i) in tt_position"
                       :key="i"
-                      :position="m.position">
+                      :position="m.position"
+                      :title="m.title">
       </el-amap-marker>
     </el-amap>
     <slot></slot>
@@ -63,11 +64,10 @@
       tt_position() {
         let tt_position = []
         for (let key in this.markers) {
-          const longitude = this.markers[key].longitude
-          const latitude = this.markers[key].latitude
-          const position = [longitude, latitude]
+          const { longitude, latitude, title } = this.markers[key]
           let obj = {}
-          obj[`position`] = position
+          obj[`position`] = [longitude, latitude]
+          obj[`title`] = title
           tt_position.push(obj)
         }
         return tt_position
