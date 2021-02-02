@@ -2,7 +2,7 @@
   <canvas
           :class="['onekit-canvas',onekitClass]"
           :style="onekitStyle"
-          :id="id">
+          :id="`${canvasId ? canvasId : onekitId}`">
   </canvas>
 </template>
 
@@ -30,10 +30,6 @@
       },
 
 
-    },
-    mounted() {
-      const id = this.canvasId || this.onekitId
-      this.id = id
     },
     methods: {
 
