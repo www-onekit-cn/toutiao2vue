@@ -1,7 +1,13 @@
 <template>
   <onekit-page id="app">
     <!-- <onekit-canvas canvas-id="my-canvas"></onekit-canvas> -->
-    <onekit-textarea value="hello world"></onekit-textarea>
+    <onekit-textarea value="hello world"
+                     placeholder="placeholder"
+                     :disabled="false"
+                     :maxlength="1300"
+                     :focus="false"
+                     auto-height>
+    </onekit-textarea>
   </onekit-page>
 
 </template>

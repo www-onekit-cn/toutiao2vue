@@ -3,7 +3,12 @@
             :class="['onekit-textarea',onekitClass]"
             :style="onekitStyle"
             :id="onekitId"
-            v-model="text">
+            v-model="text"
+            :placeholder="placeholder"
+            :disabled="disabled"
+            :maxlength="maxlength"
+            :autofocus="focus"
+            @input="write">
   </textarea>
 </template>
 
@@ -19,15 +24,33 @@
     },
     mixins: [toutiao_behavior, onekit_behavior],
     props: {
-      'value': String
+      'value': String,
+      'placeholder': String,
+      'disabled': {
+        type: Boolean,
+        default: false
+      },
+      'maxlength': Number,
+      focus: {
+        type: Boolean,
+        default: false,
+      },
+      'auto-height': {
+        type: Boolean,
+        default: false
+      }
     },
-    created() {
-      // this.text = this.value
-      // console.log(this.text)
+    created() {},
+    mounted() {
+
+
     },
     methods: {
-      write(event) {
-        console.log('ok', event)
+      write() {
+        if (this.autoHeight) {
+          console.log(this.$el.scrollHeight)
+          this.$el.style.height = `${this.$el.scrollHeight}px`
+        }
       }
     },
   }
@@ -39,6 +62,6 @@
     resize: none;
     background: none;
     outline: none;
-    border: none;
+    /* border: none;a */
   }
 </style>
