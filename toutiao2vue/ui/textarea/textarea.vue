@@ -20,7 +20,8 @@
     name: "onekit-textarea",
     data() {
       return {
-        text: this.value
+        text: this.value,
+        detailData: []
       }
     },
     mixins: [toutiao_behavior, onekit_behavior],
@@ -51,6 +52,14 @@
       'cursor': {
         type: Number,
         default: -1
+      },
+      'selection-start': {
+        type: Number,
+        default: -1
+      },
+      'selection-end': {
+        type: Number,
+        default: -1
       }
     },
     created() {},
@@ -59,16 +68,31 @@
 
     },
     methods: {
-      write() {
+      write(event) {
+        const { currentTarget, target, timeStamp } = event
+        const detail = {
+          value: this.$el.value,
+          cursor: this.$el.value.length,
+        }
+        const e = {
+          type: event.type,
+          currentTarget,
+          detail,
+          target,
+          timeStamp,
+          touches: [],
+          changedTouches: [],
+        }
+
+        this.$emit('input', e)
         if (this.autoHeight) {
-          console.log(this.$el.scrollHeight)
           this.$el.style.height = `${this.$el.scrollHeight}px`
         }
       },
-      __setCaretPosition(ctrl, pos) {
+      __setCaretPosition(ctrl, pos, start, end) {
         if (ctrl.setSelectionRange) {
           ctrl.focus();
-          ctrl.setSelectionRange(0, pos)
+          ctrl.setSelectionRange(start, end)
         } else if (ctrl.createTextRange) {
           var range = ctrl.createTextRange()
           range.collapse(true)
@@ -77,11 +101,35 @@
           range.select()
         }
       },
-      _focus() {
-        if (this.cursor !== -1) {
-          this.__setCaretPosition(this.$el, this.cursor)
+      _focus(e) {
+        const { currentTarget, target, timeStamp } = e
+        const detail = {
+          value: this.$el.value,
+          height: this.$el.scrollHeight
+        }
+        const event = {
+          type: e.type,
+          currentTarget,
+          detail,
+          target,
+          timeStamp,
+          touches: [],
+          changedTouches: [],
         }
 
+        this.$emit('focus', event)
+        console.log(event)
+        if (this.cursor !== -1) {
+          this.__setCaretPosition(this.$el, this.cursor, 0, this.cursor)
+        }
+
+        if (this.selectionStart !== -1) {
+          this.__setCaretPosition(this.$el, this.cursor, this.selectionStart, this.$el.value.length - 1)
+        }
+
+        if (this.selectionEnd !== -1) {
+          this.__setCaretPosition(this.$el, this.cursor, 0, this.selectionEnd)
+        }
         if (this.cursorSpacing !== -1) {
           setTimeout(() => {
             this.$el.scrollIntoView(true)
