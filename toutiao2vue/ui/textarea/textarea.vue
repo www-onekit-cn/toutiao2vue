@@ -1,14 +1,15 @@
 <template>
   <textarea
             :class="['onekit-textarea',onekitClass]"
-            :style="onekitStyle"
             :id="onekitId"
             v-model="text"
             :placeholder="placeholder"
             :disabled="disabled"
             :maxlength="maxlength"
             :autofocus="focus"
-            @input="write">
+            @input="write"
+            @focus="_focus"
+            :style="{onekitStyle,'position': fixed ? 'fixed' : 'relative'}">
   </textarea>
 </template>
 
@@ -38,6 +39,18 @@
       'auto-height': {
         type: Boolean,
         default: false
+      },
+      'fixed': {
+        type: Boolean,
+        default: false
+      },
+      'cursor-spacing': {
+        type: Number,
+        default: -1
+      },
+      'cursor': {
+        type: Number,
+        default: -1
       }
     },
     created() {},
@@ -50,6 +63,29 @@
         if (this.autoHeight) {
           console.log(this.$el.scrollHeight)
           this.$el.style.height = `${this.$el.scrollHeight}px`
+        }
+      },
+      __setCaretPosition(ctrl, pos) {
+        if (ctrl.setSelectionRange) {
+          ctrl.focus();
+          ctrl.setSelectionRange(0, pos)
+        } else if (ctrl.createTextRange) {
+          var range = ctrl.createTextRange()
+          range.collapse(true)
+          range.moveEnd('character', pos)
+          range.moveStart('character', pos)
+          range.select()
+        }
+      },
+      _focus() {
+        if (this.cursor !== -1) {
+          this.__setCaretPosition(this.$el, this.cursor)
+        }
+
+        if (this.cursorSpacing !== -1) {
+          setTimeout(() => {
+            this.$el.scrollIntoView(true)
+          }, 200)
         }
       }
     },

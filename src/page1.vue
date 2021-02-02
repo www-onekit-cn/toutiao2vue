@@ -6,7 +6,8 @@
                      :disabled="false"
                      :maxlength="1300"
                      :focus="false"
-                     auto-height>
+                     auto-height
+                     :cursor="20">
     </onekit-textarea>
   </onekit-page>
 
