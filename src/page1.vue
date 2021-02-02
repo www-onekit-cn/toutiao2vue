@@ -10,20 +10,17 @@
   import tt from '../toutiao2vue/tt'
   export default OnekitPage({}, {
     onLoad() {
-      const dom = document.getElementById('my-canvas')
       const { pixelRatio } = tt.getSystemInfoSync()
       const canvasCtx = tt.createCanvasContext('my-canvas')
-      // 画布尺寸初始值同组件大小，放到手机屏幕后相当于将初始大小的画布放大为手机屏幕比例
-      // 因此使用画布前需要将画布设置为手机屏幕相同比例
       canvasCtx.width *= pixelRatio
       canvasCtx.height *= pixelRatio
       // 同时需要缩放画布 x，y 方向尺寸
-      canvasCtx.scale(pixelRatio, pixelRatio);
-      canvasCtx.clearRect(0, 0, 300, 225);
+      canvasCtx.scale(pixelRatio, pixelRatio)
+      canvasCtx.clearRect(0, 0, 300, 225)
 
       // canvasCtx.fillStyle = this.data.color;
-      canvasCtx.font = "30px sans-serif";
-      canvasCtx.fillText("ByteDance canvas", 0, 30);
+      canvasCtx.font = "30px sans-serif"
+      canvasCtx.fillText("ByteDance canvas", 0, 30)
     }
   })
 </script>

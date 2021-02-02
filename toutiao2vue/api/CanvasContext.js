@@ -1,51 +1,51 @@
 /* eslint-disable max-len */
 export default class CanvasContext {
   constructor(alipayCanvasContext) {
-    this.alipayCanvasContext = alipayCanvasContext
+    this.webCanvasContext = alipayCanvasContext
   }
 
   arc(x, y, r, sAngle, eAngle, counterclockwise) {
-    return this.alipayCanvasContext.arc(x, y, r, sAngle, eAngle, counterclockwise)
+    return this.webCanvasContext.arc(x, y, r, sAngle, eAngle, counterclockwise)
   }
 
   arcTo(x1, y1, x2, y2, radius) {
-    return this.alipayCanvasContext.arcTo(x1, y1, x2, y2, radius)
+    return this.webCanvasContext.arcTo(x1, y1, x2, y2, radius)
   }
 
   beginPath() {
-    return this.alipayCanvasContext.beginPath()
+    return this.webCanvasContext.beginPath()
   }
 
   bezierCurveTo(cp1x, cp1y, cp2x, cp2y, x, y) {
-    return this.alipayCanvasContext.bezierCurveTo(cp1x, cp1y, cp2x, cp2y, x, y)
+    return this.webCanvasContext.bezierCurveTo(cp1x, cp1y, cp2x, cp2y, x, y)
   }
 
   clearRect(x, y, width, height) {
-    return this.alipayCanvasContext.clearRect(x, y, width, height)
+    return this.webCanvasContext.clearRect(x, y, width, height)
   }
 
   clip() {
-    return this.alipayCanvasContext.createCircularGradient()
+    return this.webCanvasContext.createCircularGradient()
   }
 
   closePath() {
-    return this.alipayCanvasContext.createLinearGradient()
+    return this.webCanvasContext.createLinearGradient()
   }
 
   createCircularGradient(x, y, r) {
-    return this.alipayCanvasContext.createCircularGradient(x, y, r)
+    return this.webCanvasContext.createCircularGradient(x, y, r)
   }
 
   createLinearGradient(x0, y0, x1, y1) {
-    return this.alipayCanvasContext.createLinearGradient(x0, y0, x1, y1)
+    return this.webCanvasContext.createLinearGradient(x0, y0, x1, y1)
   }
 
   createPattern(image, repetition) {
-    return this.alipayCanvasContext.createPattern(image, repetition)
+    return this.webCanvasContext.createPattern(image, repetition)
   }
 
   draw(reserve, callback) {
-    return this.alipayCanvasContext.draw(reserve, callback)
+    return this.webCanvasContext.draw(reserve, callback)
   }
 
   drawImage(imageResource, sx, sy) {
@@ -55,65 +55,65 @@ export default class CanvasContext {
     const dy = 0
     const dWidth = 0
     const dHeight = 0
-    return this.alipayCanvasContext.drawImage(imageResource, sx, sy, sWidth, sHeight, dx, dy, dWidth, dHeight)
+    return this.webCanvasContext.drawImage(imageResource, sx, sy, sWidth, sHeight, dx, dy, dWidth, dHeight)
   }
 
   fill() {
-    return this.alipayCanvasContext.fill()
+    return this.webCanvasContext.fill()
   }
 
   fillRect(x, y, width, height) {
-    return this.alipayCanvasContext.fillRect(x, y, width, height)
+    return this.webCanvasContext.fillRect(x, y, width, height)
   }
 
   fillText(text, x, y) {
-    this.alipayCanvasContext.fillStyle = '#000'
-    return this.alipayCanvasContext.fillText(text, x, y)
+    this.webCanvasContext.fillStyle = '#000'
+    return this.webCanvasContext.fillText(text, x, y)
   }
 
   lineTo(x, y) {
-    return this.alipayCanvasContext.lineTo(x, y)
+    return this.webCanvasContext.lineTo(x, y)
   }
 
   measureText(text) {
-    return this.alipayCanvasContext.measureText(text)
+    return this.webCanvasContext.measureText(text)
   }
 
   moveTo(x, y) {
-    return this.alipayCanvasContext.moveTo(x, y)
+    return this.webCanvasContext.moveTo(x, y)
   }
 
   quadraticCurveTo(cpx, cpy, x, y) {
-    return this.alipayCanvasContext.quadraticCurveTo(cpx, cpy, x, y)
+    return this.webCanvasContext.quadraticCurveTo(cpx, cpy, x, y)
   }
 
   rect(x, y, width, height) {
-    return this.alipayCanvasContext.rect(x, y, width, height)
+    return this.webCanvasContext.rect(x, y, width, height)
   }
 
   restore() {
-    return this.alipayCanvasContext.restore()
+    return this.webCanvasContext.restore()
   }
 
   rotate(rotate) {
-    return this.alipayCanvasContext.rotate(rotate)
+    return this.webCanvasContext.rotate(rotate)
   }
 
   save() {
-    return this.alipayCanvasContext.save()
+    return this.webCanvasContext.save()
   }
 
   scale(scaleWidth, scaleHeight) {
-    return this.alipayCanvasContext.scale(scaleWidth, scaleHeight)
+    return this.webCanvasContext.scale(scaleWidth, scaleHeight)
   }
 
   //
   set fillStyle(color) {
-    this.alipayCanvasContext.fillStyle = color
+    this.webCanvasContext.fillStyle = color
   }
 
   get fillStyle() {
-    return this.alipayCanvasContext.getFillStyle()
+    return this.webCanvasContext.getFillStyle()
   }
 
   setFillStyle(color) {
@@ -122,21 +122,21 @@ export default class CanvasContext {
 
   //
   set font(fontSize) {
-    this.alipayCanvasContext.font = fontSize
+    this.webCanvasContext.font = fontSize
   }
 
 
   setFontSize(fontSize) {
-    this.alipayCanvasContext.font = fontSize
+    this.webCanvasContext.font = fontSize
   }
 
   //
   set globalAlpha(alpha) {
-    this.alipayCanvasContext.setGlobalAlpha(alpha)
+    this.webCanvasContext.setGlobalAlpha(alpha)
   }
 
   get globalAlpha() {
-    return this.alipayCanvasContext.getGlobalAlpha()
+    return this.webCanvasContext.getGlobalAlpha()
   }
 
   setGlobalAlpha(alpha) {
@@ -145,11 +145,11 @@ export default class CanvasContext {
 
   //
   set lineCap(lineCap) {
-    this.alipayCanvasContext.setLineCap(lineCap)
+    this.webCanvasContext.setLineCap(lineCap)
   }
 
   get lineCap() {
-    return this.alipayCanvasContext.getLineCap()
+    return this.webCanvasContext.getLineCap()
   }
 
   setLineCap(lineCap) {
@@ -158,11 +158,11 @@ export default class CanvasContext {
 
   //
   set lineDashOffset(offset) {
-    this.alipayCanvasContext.setLineDash([5, 5], offset)
+    this.webCanvasContext.setLineDash([5, 5], offset)
   }
 
   get lineDashOffset() {
-    return this.alipayCanvasContext.getLineDash()
+    return this.webCanvasContext.getLineDash()
   }
 
   setLineDash(pattern, offset) {
@@ -171,11 +171,11 @@ export default class CanvasContext {
 
   //
   set lineJoin(lineJoin) {
-    this.alipayCanvasContext.setLineJoin(lineJoin)
+    this.webCanvasContext.setLineJoin(lineJoin)
   }
 
   get lineJoin() {
-    return this.alipayCanvasContext.getLineJoin()
+    return this.webCanvasContext.getLineJoin()
   }
 
   setLineJoin(lineJoin) {
@@ -184,11 +184,11 @@ export default class CanvasContext {
 
   //
   set lineWidth(lineWidth) {
-    this.alipayCanvasContext.setLineWidth(lineWidth)
+    this.webCanvasContext.setLineWidth(lineWidth)
   }
 
   get lineWidth() {
-    return this.alipayCanvasContext.getLineWidth()
+    return this.webCanvasContext.getLineWidth()
   }
 
   setLineWidth(lineWidth) {
@@ -197,11 +197,11 @@ export default class CanvasContext {
 
   //
   set miterLimit(miterLimit) {
-    this.alipayCanvasContext.setMiterLimit(miterLimit)
+    this.webCanvasContext.setMiterLimit(miterLimit)
   }
 
   get miterLimit() {
-    return this.alipayCanvasContext.getMiterLimit()
+    return this.webCanvasContext.getMiterLimit()
   }
 
   setMiterLimit(miterLimit) {
@@ -214,7 +214,7 @@ export default class CanvasContext {
     const blur = this._shadowBlur || 0
     const color = this._shadowColor || 'black'
     this._shadowOffsetX = offsetX
-    this.alipayCanvasContext.setShadow(offsetX, offsetY, blur, color)
+    this.webCanvasContext.setShadow(offsetX, offsetY, blur, color)
   }
 
   get shadowOffsetX() {
@@ -226,7 +226,7 @@ export default class CanvasContext {
     const blur = this._shadowBlur || 0
     const color = this._shadowColor || 'black'
     this._shadowOffsetY = offsetY
-    this.alipayCanvasContext.setShadow(offsetX, offsetY, blur, color)
+    this.webCanvasContext.setShadow(offsetX, offsetY, blur, color)
   }
 
   get shadowOffsetY() {
@@ -238,7 +238,7 @@ export default class CanvasContext {
     const offsetY = this._shadowOffsetY || 0
     const color = this._shadowColor || 'black'
     this._shadowBlur = blur
-    this.alipayCanvasContext.setShadow(offsetX, offsetY, blur, color)
+    this.webCanvasContext.setShadow(offsetX, offsetY, blur, color)
   }
 
   get shadowBlur() {
@@ -250,7 +250,7 @@ export default class CanvasContext {
     const offsetY = this._shadowOffsetY || 0
     const blur = this._shadowBlur || 0
     this._shadowColor = color
-    this.alipayCanvasContext.setShadow(offsetX, offsetY, blur, color)
+    this.webCanvasContext.setShadow(offsetX, offsetY, blur, color)
   }
 
   get shadowColor() {
@@ -267,11 +267,11 @@ export default class CanvasContext {
 
   //
   set strokeStyle(color) {
-    this.alipayCanvasContext.setStrokeStyle(color)
+    this.webCanvasContext.setStrokeStyle(color)
   }
 
   get strokeStyle() {
-    return this.alipayCanvasContext.getStrokeStyle()
+    return this.webCanvasContext.getStrokeStyle()
   }
 
   setStrokeStyle(color) {
@@ -279,34 +279,34 @@ export default class CanvasContext {
   }
 
   setTextAlign(align) {
-    return this.alipayCanvasContext.setTextAlign(align)
+    return this.webCanvasContext.setTextAlign(align)
   }
 
   setTextBaseline(textBaseline) {
-    return this.alipayCanvasContext.setTextBaseline(textBaseline)
+    return this.webCanvasContext.setTextBaseline(textBaseline)
   }
 
   setTransform(scaleX, skewX, skewY, scaleY, translateX, translateY) {
-    return this.alipayCanvasContext.setTransform(scaleX, skewX, skewY, scaleY, translateX, translateY)
+    return this.webCanvasContext.setTransform(scaleX, skewX, skewY, scaleY, translateX, translateY)
   }
 
   stroke() {
-    return this.alipayCanvasContext.stroke()
+    return this.webCanvasContext.stroke()
   }
 
   strokeRect(x, y, width, height) {
-    return this.alipayCanvasContext.strokeRect(x, y, width, height)
+    return this.webCanvasContext.strokeRect(x, y, width, height)
   }
 
   strokeText(text, x, y, maxWidth = 0) {
-    return this.alipayCanvasContext.strokeText(text, x, y, maxWidth)
+    return this.webCanvasContext.strokeText(text, x, y, maxWidth)
   }
 
   transform(scaleX, skewX, skewY, scaleY, translateX, translateY) {
-    return this.alipayCanvasContext.transform(scaleX, skewX, skewY, scaleY, translateX, translateY)
+    return this.webCanvasContext.transform(scaleX, skewX, skewY, scaleY, translateX, translateY)
   }
 
   translate(x, y) {
-    return this.alipayCanvasContext.translate(x, y)
+    return this.webCanvasContext.translate(x, y)
   }
 }
