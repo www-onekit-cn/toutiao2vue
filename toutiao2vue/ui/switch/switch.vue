@@ -87,7 +87,7 @@
         if (this.disabled) {
           return;
         }
-        this.status ? (this.status = false) : (this.status = true);
+        this.status ? (this.status = false) : (this.status = true)
         this.changeStatus()
         this.$emit("change", this.status)
       }
@@ -97,7 +97,7 @@
         this.status = this.value;
       }
       if (this.switchBg != this.background) {
-        this.switchBg = this.background;
+        this.switchBg = this.background
       }
     },
   }
@@ -111,6 +111,7 @@
     border-radius: 15px;
     position: relative;
     cursor: pointer;
+    transition: .25s background;
   }
 
   .close {

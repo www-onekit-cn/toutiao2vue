@@ -5,9 +5,9 @@
 </template>
 
 <script>
-export default {
-  name: "onekit-page",
-};
+  export default {
+    name: "onekit-page",
+  };
 </script>
 
 <style scoped>
