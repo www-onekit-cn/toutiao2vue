@@ -1,3 +1,4 @@
+/** BUG待处理 2021 2 2*/
 <template>
   <div
        :class="['onekit-scroll-view',onekitClass]"
@@ -15,8 +16,29 @@
     name: "onekit-scroll-view",
     mixins: [toutiao_behavior, onekit_behavior],
     props: {
-
-
+      'scroll-x': {
+        type: Boolean,
+        default: false
+      },
+      'scroll-y': {
+        type: Boolean,
+        default: false
+      },
+      'scroll-with-animation': {
+        type: Boolean,
+        default: false
+      },
+      'upper-threshold': {
+        type: Number,
+        default: 50
+      },
+      'lower-threshold': {
+        type: Number,
+        default: 50
+      },
+      'scroll-top': Number,
+      'scroll-left': Number,
+      'scroll-into-view': String,
     },
     mounted() {},
     methods: {
