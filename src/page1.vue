@@ -1,34 +1,57 @@
-<!--
- * @Autor: YeWei Wang
- * @Date: 2021-01-14 13:53:32
- * @WeChat: wj826036
- * @Motto: 求知若渴，虚心若愚
- * @Description: 
- * @LastEditTime: 2021-01-29 14:21:49
- * @Version: 1.0
- * @FilePath: \toutiao2vue\src\page1.vue
--->
 <template>
   <onekit-page id="app">
-
-    <onekit-map></onekit-map>
-
+    <onekit-canvas></onekit-canvas>
+    <onekit-canvas canvas-id="my-canvas"></onekit-canvas>
   </onekit-page>
+
 </template>
 
 <script>
   import OnekitPage from '../toutiao2vue/OnekitPage';
-  // import tt from '../toutiao2vue/tt'
+  import tt from '../toutiao2vue/tt'
   export default OnekitPage(null, {
-    data: {
-      src: 'http://vodkgeyttp8.vod.126.net/cloudmusic/9652/core/5965/ea1dc8b6835211f3ae695f48a3d27b1a.mp4?wsSecret=6308e4fbedd8712d0b632d09b96a5732&wsTime=1611911002'
-    },
-    test() {
-      console.log('ok')
+    onLoad() {
+      const canvasCtx = tt.createCanvasContext('my-canvas')
+      // 画布尺寸初始值同组件大小，放到手机屏幕后相当于将初始大小的画布放大为手机屏幕比例
+      // 因此使用画布前需要将画布设置为手机屏幕相同比例
+      canvasCtx.width *= devicePixelRatio;
+      canvasCtx.height *= devicePixelRatio;
+      // 同时需要缩放画布 x，y 方向尺寸
+      canvasCtx.scale(devicePixelRatio, devicePixelRatio);
+      canvasCtx.clearRect(0, 0, 300, 225);
+
+      canvasCtx.fillStyle = this.data.color;
+      canvasCtx.font = "30px sans-serif";
+      canvasCtx.fillText("ByteDance canvas", 0, 30);
     }
   });
 </script>
 
 <style>
+  #app {
+    height: 100vh;
+  }
 
+  .view {
+    width: 100%;
+    height: 200px;
+    display: block;
+    color: #fff;
+    text-align: center;
+    justify-content: center;
+    line-height: 200px;
+    font-size: 24px;
+  }
+
+  .view1 {
+    background: #000;
+  }
+
+  .view2 {
+    background: #f12;
+  }
+
+  .view3 {
+    background: violet;
+  }
 </style>
