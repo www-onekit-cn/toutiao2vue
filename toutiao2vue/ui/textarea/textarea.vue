@@ -7,8 +7,10 @@
             :disabled="disabled"
             :maxlength="maxlength"
             :autofocus="focus"
-            @input="write"
+            @input="_write"
             @focus="_focus"
+            @blur="_blur"
+            @keyup.enter="_confirm"
             :style="{onekitStyle,'position': fixed ? 'fixed' : 'relative'}">
   </textarea>
 </template>
@@ -68,7 +70,7 @@
 
     },
     methods: {
-      write(event) {
+      _write(event) {
         const { currentTarget, target, timeStamp } = event
         const detail = {
           value: this.$el.value,
@@ -118,7 +120,7 @@
         }
 
         this.$emit('focus', event)
-        console.log(event)
+
         if (this.cursor !== -1) {
           this.__setCaretPosition(this.$el, this.cursor, 0, this.cursor)
         }
@@ -135,6 +137,39 @@
             this.$el.scrollIntoView(true)
           }, 200)
         }
+      },
+      _blur(e) {
+        const { currentTarget, target, timeStamp } = e
+        const detail = {
+          value: this.$el.value,
+        }
+        const event = {
+          type: e.type,
+          currentTarget,
+          detail,
+          target,
+          timeStamp,
+          touches: [],
+          changedTouches: [],
+        }
+        this.$emit('blur', event)
+      },
+      _confirm(e) {
+        const { currentTarget, target, timeStamp } = e
+        const detail = {
+          value: this.$el.value,
+        }
+        const event = {
+          type: e.type,
+          currentTarget,
+          detail,
+          target,
+          timeStamp,
+          touches: [],
+          changedTouches: [],
+        }
+        this.$emit('confirm', event)
+        console.log(event)
       }
     },
   }
