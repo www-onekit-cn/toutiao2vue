@@ -169,7 +169,6 @@
           changedTouches: [],
         }
         this.$emit('confirm', event)
-        console.log(event)
       }
     },
   }
