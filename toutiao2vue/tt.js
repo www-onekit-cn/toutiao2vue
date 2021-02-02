@@ -4,7 +4,7 @@ import TT from 'toutiao2html/tt'
 import PROMISE from 'oneutil/PROMISE'
 import OneKit from './js/OneKit'
 import EventChannel from "./api/EventChannel"
-
+import CanvasContext from "./api/CanvasContext"
 class VueTT extends TT {
 
   setNavigationBarTitle(wx_object) {
@@ -801,5 +801,11 @@ class VueTT extends TT {
     }, success, fail, complete)
   }
 
+ ////////////////////// 画布 /////////////////////
+ createCanvasContext(id) {
+  const canvas = document.getElementById(id)
+  const canvasContext = canvas.getContext("2d");
+  return new CanvasContext(canvasContext)
+}
 }
 export default new VueTT(() => Vue.prototype)
