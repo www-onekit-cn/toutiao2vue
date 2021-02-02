@@ -1,19 +1,20 @@
 <template>
   <onekit-page id="app">
-    <onekit-canvas></onekit-canvas>
     <onekit-canvas canvas-id="my-canvas"></onekit-canvas>
   </onekit-page>
 
 </template>
 
 <script>
-  import OnekitPage from '../toutiao2vue/OnekitPage';
+  //import OnekitPage from '../toutiao2vue/OnekitPage';
   import tt from '../toutiao2vue/tt'
-  export default OnekitPage(null, {
-    onLoad() {
+  export default {
+    mounted() {
+      const { devicePixelRatio } = tt.getSystemInfoSync();
       const canvasCtx = tt.createCanvasContext('my-canvas')
       // 画布尺寸初始值同组件大小，放到手机屏幕后相当于将初始大小的画布放大为手机屏幕比例
       // 因此使用画布前需要将画布设置为手机屏幕相同比例
+      console.log(devicePixelRatio)
       canvasCtx.width *= devicePixelRatio;
       canvasCtx.height *= devicePixelRatio;
       // 同时需要缩放画布 x，y 方向尺寸
@@ -24,7 +25,7 @@
       canvasCtx.font = "30px sans-serif";
       canvasCtx.fillText("ByteDance canvas", 0, 30);
     }
-  });
+  };
 </script>
 
 <style>

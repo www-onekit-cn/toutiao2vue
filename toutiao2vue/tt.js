@@ -804,6 +804,7 @@ class VueTT extends TT {
  ////////////////////// 画布 /////////////////////
  createCanvasContext(id) {
   const canvas = document.getElementById(id)
+  console.log(id,canvas)
   const canvasContext = canvas.getContext("2d");
   return new CanvasContext(canvasContext)
 }

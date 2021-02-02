@@ -1,11 +1,9 @@
 <template>
-  <div
-       :class="['onekit-canvas',onekitClass]"
-       :style="onekitStyle"
-       :id="onekitId">
-    <canvas :id="canvasId"></canvas>
-    <slot></slot>
-  </div>
+  <canvas
+          :class="['onekit-canvas',onekitClass]"
+          :style="onekitStyle"
+          :id="id">
+  </canvas>
 </template>
 
 <script>
@@ -14,6 +12,9 @@
   export default {
     name: "onekit-canvas",
     mixins: [toutiao_behavior, onekit_behavior],
+    data() {
+      return { id: '' }
+    },
     props: {
       "type": {
         type: String,
@@ -29,6 +30,10 @@
       },
 
 
+    },
+    mounted() {
+      const id = this.canvasId || this.onekitId
+      this.id = id
     },
     methods: {
 
