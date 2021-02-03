@@ -3,7 +3,6 @@
        :class="['onekit-radio-group',onekitClass]"
        :style="onekitStyle"
        :id="onekitId">
-    <h2>radio-group</h2>
     <slot></slot>
   </div>
 </template>
@@ -11,15 +10,19 @@
 <script>
   import toutiao_behavior from "../../behaviors/toutiao_behavior"
   import onekit_behavior from "../../behaviors/onekit_behavior"
+  import { eventBus } from '../../eventBus'
   export default {
     name: "onekit-radio-group",
     mixins: [toutiao_behavior, onekit_behavior],
     props: {
-
-
+      'name': String
     },
-    methods: {
-
+    created() {
+      eventBus.$on('itemclick', data => {
+        this.$nextTick(() => {
+          this.$emit('change', data)
+        })
+      })
     }
   }
 </script>

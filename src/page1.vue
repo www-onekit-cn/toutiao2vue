@@ -1,14 +1,17 @@
 <template>
   <onekit-page id="app">
-    <onekit-label class="radio">
-      <onekit-radio color="#000" value="王野未" /> 选择
-    </onekit-label>
-    <onekit-label class="radio">
-      <onekit-radio checked disabled /> 选择
-    </onekit-label>
-    <onekit-label class="radio">
-      <onekit-radio disabled /> 选择
-    </onekit-label>
+    <onekit-radio-group @change="click">
+      <onekit-label class="radio">
+        <onekit-radio color="#000" value="王野未" /> 王野未
+      </onekit-label>
+      <onekit-label class="radio">
+        <onekit-radio color="#000" value="水原希子" /> 水原希子
+      </onekit-label>
+    </onekit-radio-group>
+
+
+
+
   </onekit-page>
 
 </template>
@@ -19,6 +22,9 @@
   export default OnekitPage({}, {
     onLoad() {
 
+    },
+    click(e) {
+      console.log(e)
     }
   })
 </script>

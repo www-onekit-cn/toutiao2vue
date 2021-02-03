@@ -7,6 +7,7 @@
            :checked="checked"
            :disabled="disabled"
            class="onekit-radio-own"
+           v-bind:value="value"
            @click="_click">
     <span class="radio-label" :style="{'background-color': disabled ? '#d1d8e0': '','border': disabled ? '#d1d8e0' : '', '--color': color}"></span>
 
@@ -16,6 +17,7 @@
 <script>
   import toutiao_behavior from "../../behaviors/toutiao_behavior"
   import onekit_behavior from "../../behaviors/onekit_behavior"
+  import { eventBus } from '../../eventBus'
   export default {
     name: "onekit-radio",
     mixins: [toutiao_behavior, onekit_behavior],
@@ -36,7 +38,7 @@
     },
     methods: {
       _click() {
-        this.$emit('itemclick', this.value)
+        eventBus.$emit('itemclick', this.value)
       }
     }
   }
