@@ -4,7 +4,7 @@
        :style="onekitStyle">
     <input type="radio"
            :id="onekitId"
-           :checked="isCheck"
+           :checked="checked"
            :disabled="disabled"
            class="onekit-radio-own"
            v-bind:value="value"
@@ -20,7 +20,6 @@
   import { eventBus } from '../../eventBus'
   export default {
     name: "onekit-radio",
-    data: () => ({ isCheck: false }),
     mixins: [toutiao_behavior, onekit_behavior],
     props: {
       'value': String,
@@ -36,9 +35,6 @@
         type: String,
         default: '#F85959'
       }
-    },
-    created() {
-      this.isCheck = this.checked
     },
     methods: {
       _click(e) {
