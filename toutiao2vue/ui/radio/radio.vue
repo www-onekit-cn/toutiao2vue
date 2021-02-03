@@ -42,7 +42,19 @@
     },
     methods: {
       _click(e) {
-        eventBus.$emit('itemclick', this.value)
+        const { changedTouches, currentTarget, timeStamp, touches } = e
+        const detail = {
+          value: this.value
+        }
+        const emitData = {
+          changedTouches,
+          currentTarget,
+          detail,
+          timeStamp,
+          touches,
+          type: "change"
+        }
+        eventBus.$emit('itemclick', emitData)
         eventBus.$on('radio-cancel', data => {
           if (this.value !== data) {
             e.target.checked = false

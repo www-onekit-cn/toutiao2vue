@@ -7,6 +7,9 @@
       <onekit-label class="radio">
         <onekit-radio color="#000" value="水原希子" /> 水原希子
       </onekit-label>
+      <onekit-label class="radio">
+        <onekit-radio color="#000" value="小彭同学" /> 小彭同学
+      </onekit-label>
     </onekit-radio-group>
 
 
