@@ -4,18 +4,20 @@
        :style="onekitStyle"
        :id="onekitId">
     <div class="slider-bar"
-         :style="{'background-color': backgroundColor}">
+         :style="{'background-color': backgroundColor || color}">
       <div class="inner-bar"
-           :style="{'width': left}"></div>
+           :style="{'width': left + 'px', 'background-color': activeColor || selectedColor}">
+      </div>
       <div class="dot"
            @touchmove="_touchmove"
-           :style="{'left': left,'width': `${blockSize}px`,
+           :style="{'left': left + 'px','width': `${blockSize}px`,
                     'height':  `${blockSize}px`, 
                     'top':  `-${blockSize / 2}px`,
-                    'background-color': blockColor}">
+                    'background-color': blockColor}"
+           @touchend="_touchend">
       </div>
     </div>
-
+    <div class="value" v-show="showValue">{{ values }}</div>
     <slot></slot>
   </div>
 </template>
@@ -26,8 +28,40 @@
   export default {
     name: "onekit-slider",
     mixins: [toutiao_behavior, onekit_behavior],
-    data: () => ({ left: 0 }),
+    data: () => ({ left: 0, values: 0 }),
     props: {
+      'max': {
+        type: Number,
+        default: 100
+      },
+      'min': {
+        type: Number,
+        default: 0
+      },
+      'step': {
+        type: Number,
+        default: 1
+      },
+      'disabled': {
+        type: Boolean,
+        default: false
+      },
+      'value': {
+        type: Number,
+        default: 0
+      },
+      'color': {
+        type: String,
+        default: '#e9e9e9'
+      },
+      'selected-color': {
+        type: String,
+        default: '#1aad19'
+      },
+      'active-color': {
+        type: String,
+        default: '#1aad19'
+      },
       'background-color': {
         type: String,
         default: '#e9e9e9'
@@ -39,23 +73,89 @@
       'block-color': {
         type: String,
         default: '#ffffff'
+      },
+      'show-value': {
+        type: Boolean,
+        default: false
       }
 
     },
+    created() {
+      this.values = this.value
+      this.left = this.values * 2.1
+    },
     methods: {
       _touchmove(e) {
+
+        if (this.disabled) return
         //onsole.log(window.screen.availWidth) // 屏幕宽度
         const { clientX } = e.changedTouches[0]
-        if (clientX < 289 && clientX > 15) {
-          // console.log(clientX / window.screen.availWidth)
-          this.left = clientX - 20 + 'px'
+        if (clientX < window.screen.availWidth && clientX > -1) {
+          this.left = clientX
+          if (this.left < 0) {
+            this.left = 0
+          }
+          let percent = 0.8
+          if (!this.showValue) percent = 0.85
+          if (this.left > window.screen.availWidth * percent) {
+            this.left = window.screen.availWidth * percent
+          }
+
+          this.values = Math.round(Math.round(clientX / window.screen.availWidth / 0.86 * 100) * (this.max / 100))
+          if (this.values < this.min) {
+            this.values = this.min
+          }
+          if (this.values > this.max) {
+            this.values = this.max
+          }
+          const { changedTouches, currentTarget, target, timeStamp, touches } = e
+          const value = this.values
+          const detail = {
+            value
+          }
+          const event = {
+            changedTouches,
+            currentTarget,
+            detail,
+            target,
+            timeStamp,
+            touches,
+            type: 'change'
+          }
+          console.log(event)
+          this.$emit('changing', event)
         }
+      },
+      _touchend(e) {
+        const { changedTouches, currentTarget, target, timeStamp, touches } = e
+        const value = this.values
+        const detail = {
+          value
+        }
+        const event = {
+          changedTouches,
+          currentTarget,
+          detail,
+          target,
+          timeStamp,
+          touches,
+          type: 'change'
+        }
+        this.$emit('change', event)
       }
     }
   }
 </script>
 
 <style>
+  .onekit-slider {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    height: 15px;
+  }
+
   .onekit-slider .slider-bar {
     width: 100%;
     height: 1.5px;
@@ -72,8 +172,14 @@
 
   .slider-bar .inner-bar {
     height: 100%;
-    background: #27ae60;
     position: absolute;
     max-width: 100%;
+  }
+
+  .value {
+    display: inline-block;
+    width: 20px;
+    text-align: center;
+    color: #999;
   }
 </style>

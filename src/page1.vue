@@ -3,7 +3,20 @@
     <!-- <onekit-canvas canvas-id="my-canvas"></onekit-canvas> -->
     <onekit-slider :block-size="19"
                    block-color="#833471"
-                   background-color="#12CBC4">
+                   background-color="#12CBC4"
+                   active-color="#ffdd59"
+                   show-value
+                   :value="30"
+                   :min="20"
+                   :max="80">
+    </onekit-slider>
+    <onekit-slider :block-size="19"
+                   block-color="#833471"
+                   background-color="#12CBC4"
+                   active-color="#ffdd59"
+                   show-value
+                   :value="30"
+                   disabled>
     </onekit-slider>
   </onekit-page>
 
