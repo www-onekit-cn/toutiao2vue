@@ -34,7 +34,7 @@
   import onekit_behavior from "../../behaviors/onekit_behavior"
   export default {
     name: "onekit-picker",
-    data: () => ({ show: 0, scrollTop: 0, touchStart: 0 }),
+    data: () => ({ show: 0, scrollTop: 0, touchStart: 0, touchingPosition: 0 }),
     mixins: [toutiao_behavior, onekit_behavior],
     props: {
       mode: {
@@ -57,23 +57,20 @@
         this.$emit('cancel')
       },
       touching(e) {
-        // console.log('touching', (window.screen.availHeight / e.changedTouches[0].clientY).toFixed(2))
-        let touchingPosition = (window.screen.availHeight / e.changedTouches[0].clientY).toFixed(2)
-        const foo = (touchingPosition - this.touchStart).toFixed(2)
-        // this.scrollTop = (this.touchStart * 10).toFixed(2)
-        console.log(foo)
-
-        this.scrollTop = foo * -100
-
-
+        this.touchingPosition = (window.screen.availHeight / e.changedTouches[0].clientY).toFixed(2)
+        if (this.touchingPosition !== 0) {
+          const foo = (this.touchingPosition - this.touchStart).toFixed(2)
+          this.scrollTop = foo * -100
+        } else {
+          console.log('toucing')
+        }
       },
       touchstart(e) {
-        // console.log('touchstart', (window.screen.availHeight / e.changedTouches[0].clientY).toFixed(2))
-        this.touchStart = (window.screen.availHeight / e.changedTouches[0].clientY).toFixed(2)
+        if (this.touchStart === 0) {
+          this.touchStart = (window.screen.availHeight / e.changedTouches[0].clientY).toFixed(2)
+        }
       },
-      touchend() {
-        // this.scrollTop = 0
-      }
+      touchend() {}
     }
   }
 </script>
