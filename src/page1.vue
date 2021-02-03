@@ -1,7 +1,13 @@
 <template>
   <onekit-page id="app">
     <onekit-label class="radio">
-      <onekit-radio /> 选择
+      <onekit-radio color="#000" value="王野未" /> 选择
+    </onekit-label>
+    <onekit-label class="radio">
+      <onekit-radio checked disabled /> 选择
+    </onekit-label>
+    <onekit-label class="radio">
+      <onekit-radio disabled /> 选择
     </onekit-label>
   </onekit-page>
 

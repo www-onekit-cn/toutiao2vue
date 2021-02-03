@@ -3,8 +3,13 @@
        :class="['onekit-radio',onekitClass]"
        :style="onekitStyle">
     <input type="radio"
-           :id="onekitId">
-    <sapn class="radio-label"></sapn>
+           :id="onekitId"
+           :checked="checked"
+           :disabled="disabled"
+           class="onekit-radio-own"
+           @click="_click">
+    <span class="radio-label" :style="{'background-color': disabled ? '#d1d8e0': '','border': disabled ? '#d1d8e0' : '', '--color': color}"></span>
+
   </div>
 </template>
 
@@ -15,11 +20,24 @@
     name: "onekit-radio",
     mixins: [toutiao_behavior, onekit_behavior],
     props: {
-
-
+      'value': String,
+      'checked': {
+        type: Boolean,
+        default: false
+      },
+      'disabled': {
+        type: Boolean,
+        default: false
+      },
+      'color': {
+        type: String,
+        default: '#F85959'
+      }
     },
     methods: {
-
+      _click() {
+        this.$emit('itemclick', this.value)
+      }
     }
   }
 </script>
@@ -51,12 +69,12 @@
     border: 1px solid #999;
   }
 
-  input:checked+.radio-label {
-    background-color: #f53b57;
-    border: 1px solid #f53b57;
+  .onekit-radio-own:checked+.radio-label {
+    background-color: var(--color);
+    border: 1px solid var(--color);
   }
 
-  input:checked+.radio-label::after {
+  .onekit-radio-own:checked+.radio-label::after {
     position: absolute;
     content: '';
     width: 5px;

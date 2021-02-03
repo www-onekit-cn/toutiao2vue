@@ -20,7 +20,7 @@
 
 <script>
   import toutiao_behavior from "../../behaviors/toutiao_behavior"
-import onekit_behavior from "../../behaviors/onekit_behavior"
+  import onekit_behavior from "../../behaviors/onekit_behavior"
   export default {
     name: "onekit-checkbox",
     mixins: [toutiao_behavior, onekit_behavior],
@@ -124,6 +124,6 @@ import onekit_behavior from "../../behaviors/onekit_behavior"
     width: 100%;
     font-size: 20px;
     font-weight: bold;
-    border-radius: 2xp;
+    border-radius: 2px;
   }
 </style>
