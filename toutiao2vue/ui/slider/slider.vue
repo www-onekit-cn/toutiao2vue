@@ -122,7 +122,6 @@
             touches,
             type: 'change'
           }
-          console.log(event)
           this.$emit('changing', event)
         }
       },
