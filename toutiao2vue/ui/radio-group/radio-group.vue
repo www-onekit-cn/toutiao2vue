@@ -19,9 +19,8 @@
     },
     created() {
       eventBus.$on('itemclick', data => {
-        this.$nextTick(() => {
-          this.$emit('change', data)
-        })
+        this.$emit('change', data)
+        eventBus.$emit('radio-cancel', data)
       })
     }
   }
