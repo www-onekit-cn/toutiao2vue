@@ -20,7 +20,7 @@
       index: 0
     },
     onLoad() {
-      // this.array = 
+
     },
     cancel() {
       console.log('[page1]: cancel')

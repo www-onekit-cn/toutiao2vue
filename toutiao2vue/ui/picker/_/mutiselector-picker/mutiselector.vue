@@ -93,7 +93,6 @@
 
             this.pickerComponent.vm.column++;
             this.index[0] = data[0].index;
-
           }
 
         }

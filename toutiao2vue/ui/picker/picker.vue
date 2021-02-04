@@ -2,7 +2,8 @@
   <div
        :class="['onekit-picker',onekitClass]"
        :style="onekitStyle"
-       :id="onekitId">
+       :id="onekitId"
+       :value="'2'">
     <div class="selector" v-if="mode === 'selector'">
       <multilevel :column="'1'" :data="data" />
       <slot></slot>
@@ -30,7 +31,11 @@
         type: Boolean,
         default: false
       },
-      range: Array
+      range: Array,
+      value: {
+        type: Number,
+        default: 0
+      }
     },
     components: {
       multilevel
