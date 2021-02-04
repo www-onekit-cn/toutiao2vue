@@ -9,7 +9,8 @@
     </div>
 
     <div class="multiselector" v-if="mode === 'multiSelector'">
-
+      <multiselector :column="'1'" :data="data"></multiselector>
+      <slot></slot>
     </div>
 
     <div class="timeselector" v-if="mode === 'time'">
@@ -32,6 +33,7 @@
   import onekit_behavior from "../../behaviors/onekit_behavior"
   import selector from './_/selector-picker/selector'
   import region from './_/region-picker/region'
+  import multiselector from './_/mutiselector-picker/multiselector'
   import city_list from './_/region-picker/city-data.json'
   import { eventBus } from '../../eventBus'
   export default {
@@ -55,7 +57,8 @@
     },
     components: {
       selector,
-      region
+      region,
+      multiselector
     },
     created() {
 

@@ -20,7 +20,7 @@
   </onekit-page> -->
   <onekit-page id='app'>
     <onekit-view onekit-class="section__title">普通选择器</onekit-view>
-    <onekit-picker :value="index" :range="array" @Change="bindPickerChange" @Cancel="bindPickerCancel">
+    <onekit-picker :value="index" :range="array" @Change="bindPickerChange" @Cancel="bindPickerCancel" mode="multiSelector">
       <onekit-view onekit-class="picker"> 当前选择：{{array[index]}} </onekit-view>
     </onekit-picker>
   </onekit-page>
