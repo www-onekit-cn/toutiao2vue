@@ -3,8 +3,12 @@
        :class="['onekit-picker',onekitClass]"
        :style="onekitStyle"
        :id="onekitId">
-    <multilevel :column="'1'" :data="range" />
-    <slot></slot>
+    <div class="selector" v-if="mode === 'selector'">
+      <multilevel :column="'1'" :data="range" />
+      <slot></slot>
+    </div>
+
+
   </div>
 </template>
 
@@ -12,7 +16,7 @@
   import toutiao_behavior from "../../behaviors/toutiao_behavior"
   import onekit_behavior from "../../behaviors/onekit_behavior"
   import multilevel from './_/mutiselector-picker/mutiselector'
-
+  import { eventBus } from '../../eventBus'
   export default {
     name: "onekit-picker",
     mixins: [toutiao_behavior, onekit_behavior],
@@ -29,6 +33,11 @@
     },
     components: {
       multilevel
+    },
+    mounted() {
+      eventBus.$on('picker-cancel', () => {
+        this.$emit('cancel')
+      })
     }
   }
 </script>

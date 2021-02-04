@@ -17,6 +17,64 @@
     </div>
   </div>
 </template>
+
+<script>
+  import columns from './colums'
+  import { eventBus } from '../../../../eventBus'
+  export default {
+    components: {
+      columns
+    },
+    name: 'picker',
+    props: {
+      cancelText: {
+        type: String,
+        default: '取消'
+      },
+      doneText: {
+        type: String,
+        default: '确定'
+      }
+    },
+    data() {
+      return {
+        openPicker: false,
+        distory: false,
+        column: [],
+        columnArr: [],
+        columnText: [],
+        parent: '',
+      }
+    },
+    methods: {
+      showPicker() {
+        this.openPicker = true;
+      },
+      done() {
+        this.openPicker = false;
+        this.parent.done();
+      },
+      cancel() {
+        eventBus.$emit('picker-cancel')
+        this.openPicker = false;
+      },
+      change(data) {
+
+        if (data.refresh) {
+          this.columnText.push(data);
+        } else {
+          for (let i = 0; i < this.columnText.length; i++) {
+            if (this.columnText[i].timeStamp == data.timeStamp) {
+              this.columnText[i] = data;
+            }
+          }
+        }
+        this.parent.change(this.columnText);
+      }
+    }
+  }
+</script>
+
 <style>
   .xx-picker-back-drop {
     background: rgba(33, 33, 33, .4);
@@ -116,57 +174,3 @@
     font-size: 18px;
   }
 </style>
-<script>
-  import columns from './colums'
-  export default {
-    components: {
-      columns
-    },
-    name: 'picker',
-    props: {
-      cancelText: {
-        type: String,
-        default: '取消'
-      },
-      doneText: {
-        type: String,
-        default: '确定'
-      }
-    },
-    data() {
-      return {
-        openPicker: false,
-        distory: false,
-        column: [],
-        columnArr: [],
-        columnText: [],
-        parent: '',
-      }
-    },
-    methods: {
-      showPicker() {
-        this.openPicker = true;
-      },
-      done() {
-        this.openPicker = false;
-        this.parent.done();
-      },
-      cancel() {
-        this.openPicker = false;
-      },
-      change(data) {
-
-        if (data.refresh) {
-          this.columnText.push(data);
-        } else {
-          for (let i = 0; i < this.columnText.length; i++) {
-            if (this.columnText[i].timeStamp == data.timeStamp) {
-              this.columnText[i] = data;
-            }
-          }
-        }
-        this.parent.change(this.columnText);
-      }
-    }
-  }
-</script>

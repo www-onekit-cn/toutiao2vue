@@ -1,7 +1,8 @@
 <template>
   <onekit-page id="app">
-    <onekit-picker
-                   :range="array">
+    <onekit-picker mode="selector"
+                   :range="array"
+                   @cancel="cancel">
       <onekit-view>当前选择： {}</onekit-view>
     </onekit-picker>
   </onekit-page>
