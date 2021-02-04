@@ -1,5 +1,6 @@
 <template>
   <onekit-page id="app">
+    <onekit-view>单列选择器</onekit-view>
     <onekit-picker mode="selector"
                    :range="array"
                    @cancel="cancel"
@@ -7,6 +8,15 @@
                    :disabled="false">
       <onekit-view>当前选择： {{array[index]}}</onekit-view>
     </onekit-picker>
+
+    <onekit-view>地区</onekit-view>
+    <onekit-picker mode="region" @change="regionchange">
+      <onekit-view>当前选择地区：<br>
+        省: {{region[0]}} <br>
+        市：{{region[1]}} <br>
+        区： {{region[2]}}</onekit-view>
+    </onekit-picker>
+
   </onekit-page>
 
 </template>
@@ -17,7 +27,8 @@
   export default OnekitPage({}, {
     data: {
       array: ["美国", "中国", "巴西", "日本"],
-      index: 0
+      index: 0,
+      region: ''
     },
     onLoad() {
 
@@ -26,7 +37,12 @@
       console.log('[page1]: cancel')
     },
     change(data) {
+      // console.log('i am run')
+      // console.log(data)
       this.index = data.detail.value
+    },
+    regionchange(data) {
+      this.region = data.detail.value
     }
   })
 </script>
