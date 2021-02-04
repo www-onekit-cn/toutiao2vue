@@ -68,17 +68,17 @@
         this.data = this.range
       }
       eventBus.$on('picker-cancel', () => {
-        this.$emit('cancel')
+        this.$emit('Cancel')
       })
       switch (this.mode) {
       case 'selector':
         eventBus.$on('onekit-picker-change-done', data => {
-          this.$emit('change', data)
+          this.$emit('Change', data)
         })
         break
       case 'region':
         eventBus.$on('onekit-region-picker-change-done', data => {
-          this.$emit('change', data)
+          this.$emit('Change', data)
         })
         break
       default:

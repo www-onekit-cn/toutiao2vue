@@ -53,7 +53,6 @@
       },
       done(e) {
         this.openPicker = false;
-        // console.log(e)
         const { changedTouches, currentTarget, target, timeStamp, touches } = e
         const detail = {
           value: this.index

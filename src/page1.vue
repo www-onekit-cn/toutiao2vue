@@ -4,13 +4,13 @@
     <onekit-picker mode="selector"
                    :range="array"
                    @cancel="cancel"
-                   @change="change"
+                   @Change="change"
                    :disabled="false">
       <onekit-view>当前选择： {{array[index]}}</onekit-view>
     </onekit-picker>
 
     <onekit-view>地区</onekit-view>
-    <onekit-picker mode="region" @change="regionchange">
+    <onekit-picker mode="region" @Change="regionchange">
       <onekit-view>当前选择地区：<br>
         省: {{region[0]}} <br>
         市：{{region[1]}} <br>
@@ -39,7 +39,10 @@
     change(data) {
       // console.log('i am run')
       // console.log(data)
-      this.index = data.detail.value
+      this.setData({
+        index: data.detail.value,
+      });
+      // this.index = data.detail.value
     },
     regionchange(data) {
       this.region = data.detail.value
