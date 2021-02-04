@@ -4,7 +4,7 @@
     <div class="xx-picker-wrap-out" :class="{'xx-picker-wrap-active':openPicker}">
       <div class="xx-picker-toolbar">
         <div @click="cancel()">{{cancelText}}</div>
-        <div @click="done()">{{doneText}}</div>
+        <div @click="done($event)">{{doneText}}</div>
       </div>
       <div class="xx-picker-wrap">
         <div class="xx-above-highlight"></div>
@@ -44,14 +44,29 @@
         columnArr: [],
         columnText: [],
         parent: '',
+        index: ''
       }
     },
     methods: {
       showPicker() {
         this.openPicker = true;
       },
-      done() {
+      done(e) {
         this.openPicker = false;
+        // console.log(e)
+        const { changedTouches, currentTarget, target, timeStamp, touches } = e
+        const detail = {
+          value: this.index
+        }
+        const onekit_e = {
+          changedTouches,
+          currentTarget,
+          detail,
+          target,
+          timeStamp,
+          touches
+        }
+        eventBus.$emit('onekit-picker-change-done', onekit_e)
         this.parent.done();
       },
       cancel() {
@@ -71,6 +86,11 @@
         }
         this.parent.change(this.columnText);
       }
+    },
+    mounted() {
+      eventBus.$on('onekit-picker-change', data => {
+        this.index = data
+      })
     }
   }
 </script>

@@ -4,7 +4,7 @@
        :style="onekitStyle"
        :id="onekitId">
     <div class="selector" v-if="mode === 'selector'">
-      <multilevel :column="'1'" :data="range" />
+      <multilevel :column="'1'" :data="data" />
       <slot></slot>
     </div>
 
@@ -19,6 +19,7 @@
   import { eventBus } from '../../eventBus'
   export default {
     name: "onekit-picker",
+    data: () => ({ data: [] }),
     mixins: [toutiao_behavior, onekit_behavior],
     props: {
       mode: {
@@ -34,9 +35,17 @@
     components: {
       multilevel
     },
+    created() {
+
+    },
     mounted() {
+      eventBus['disabled'] = this.disabled
+      this.data = this.range
       eventBus.$on('picker-cancel', () => {
         this.$emit('cancel')
+      })
+      eventBus.$on('onekit-picker-change-done', data => {
+        this.$emit('change', data)
       })
     }
   }

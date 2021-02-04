@@ -52,10 +52,8 @@
       }
     },
     methods: {
-
       step() {
         this.startY++;
-
         if (this.startY < 100) {
           window.requestAnimationFrame(this.step);
         }
@@ -221,7 +219,7 @@
             refresh: refresh
           });
 
-          console.log(this.column[this.lastIndex])
+          // console.log(this.lastIndex)
         }
 
       },

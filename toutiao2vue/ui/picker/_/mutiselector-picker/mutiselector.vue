@@ -11,6 +11,8 @@
 </style>
 <script>
   import picker from './mutiselector-picker';
+  import { eventBus } from '../../../../eventBus'
+  import Vue from 'vue'
   export default {
     name: 'multilevel',
     props: {
@@ -43,7 +45,6 @@
         // eslint-disable-next-line vue/no-mutating-props
         this.data = data;
         let pickerComponent
-        // eslint-disable-next-line no-undef
         typeof (Vue) == 'undefined' ? pickerComponent = require('vue').default.extend(picker): pickerComponent = Vue
           .extend(picker);
         this.pickerComponent = new pickerComponent();
@@ -62,7 +63,8 @@
         pickerText: '',
         pickerComponent: '',
         index: [],
-        changeData: ''
+        changeData: '',
+        disabled: false
       }
     },
     methods: {
@@ -76,6 +78,7 @@
 
       },
       showPicker() {
+        if (this.disabled) return
         this.pickerComponent.vm.showPicker()
       },
       change(data) {
@@ -102,6 +105,7 @@
         if (data[2] && !data[2].refresh && data[2].index != this.index[2]) this.index[2] = data[2].index || 0;
         this.changeData = data;
         this.$emit('change', data);
+        eventBus.$emit('onekit-picker-change', data[this.index].index)
       },
       done() {
         this.pickerText = [];
@@ -114,6 +118,9 @@
 
         this.$emit('done', this.changeData)
       }
+    },
+    created() {
+      this.disabled = eventBus.disabled
     }
   }
 </script>
