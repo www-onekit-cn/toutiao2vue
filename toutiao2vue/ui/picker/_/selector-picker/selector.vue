@@ -10,7 +10,7 @@
   }
 </style>
 <script>
-  import picker from './mutiselector-picker';
+  import picker from './selector-picker';
   import { eventBus } from '../../../../eventBus'
   import Vue from 'vue'
   export default {

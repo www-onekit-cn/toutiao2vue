@@ -5,9 +5,11 @@
        :id="onekitId"
        :value="'2'">
     <div class="selector" v-if="mode === 'selector'">
-      <multilevel :column="'1'" :data="data" />
+      <selector :column="'1'" :data="data" />
       <slot></slot>
     </div>
+
+
 
 
   </div>
@@ -16,7 +18,7 @@
 <script>
   import toutiao_behavior from "../../behaviors/toutiao_behavior"
   import onekit_behavior from "../../behaviors/onekit_behavior"
-  import multilevel from './_/mutiselector-picker/mutiselector'
+  import selector from './_/selector-picker/selector'
   import { eventBus } from '../../eventBus'
   export default {
     name: "onekit-picker",
@@ -38,7 +40,7 @@
       }
     },
     components: {
-      multilevel
+      selector
     },
     created() {
 
