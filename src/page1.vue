@@ -1,5 +1,5 @@
 <template>
-  <onekit-page id="app">
+  <!-- <onekit-page id="app">
     <onekit-view>单列选择器</onekit-view>
     <onekit-picker mode="selector"
                    :range="array"
@@ -17,35 +17,65 @@
         区： {{region[2]}}</onekit-view>
     </onekit-picker>
 
+  </onekit-page> -->
+  <onekit-page id='app'>
+    <onekit-view onekit-class="section__title">普通选择器</onekit-view>
+    <onekit-picker :value="index" :range="array" @Change="bindPickerChange" @Cancel="bindPickerCancel">
+      <onekit-view onekit-class="picker"> 当前选择：{{array[index]}} </onekit-view>
+    </onekit-picker>
   </onekit-page>
-
 </template>
 
 <script>
   import OnekitPage from '../toutiao2vue/OnekitPage';
-  // import tt from '../toutiao2vue/tt'
+  import tt from '../toutiao2vue/tt'
+  // export default OnekitPage({}, {
+  //   data: {
+  //     array: ["美国", "中国", "巴西", "日本"],
+  //     index: 0,
+  //     region: ''
+  //   },
+  //   onLoad() {
+
+  //   },
+  //   cancel() {
+  //     console.log('[page1]: cancel')
+  //   },
+  //   change(data) {
+  //     // console.log('i am run')
+  //     // console.log(data)
+  //     this.setData({
+  //       index: data.detail.value,
+  //     });
+  //     // this.index = data.detail.value
+  //   },
+  //   regionchange(data) {
+  //     this.region = data.detail.value
+  //   }
+  // })
+
+
   export default OnekitPage({}, {
     data: {
-      array: ["美国", "中国", "巴西", "日本"],
-      index: 0,
-      region: ''
+      array: [
+        "美国",
+        "中国",
+        "巴西",
+        "日本"
+      ],
+      index: 0
     },
-    onLoad() {
-
-    },
-    cancel() {
-      console.log('[page1]: cancel')
-    },
-    change(data) {
-      // console.log('i am run')
-      // console.log(data)
+    bindPickerChange: function (e) {
+      console.log("picker发送选择改变，携带值为", e.detail.value)
       this.setData({
-        index: data.detail.value,
-      });
-      // this.index = data.detail.value
+        index: e.detail.value
+      })
     },
-    regionchange(data) {
-      this.region = data.detail.value
+    bindPickerCancel: function (e) {
+      console.log(e)
+      tt.showToast({
+        title: "cancel"
+      })
     }
   })
 </script>
