@@ -1,8 +1,6 @@
 <template>
   <onekit-page id="app">
-    <onekit-picker mdoe="selector"
-                   :disabled="false"
-                   @cancel="cancel"
+    <onekit-picker
                    :range="array">
       <onekit-view>当前选择： {}</onekit-view>
     </onekit-picker>
@@ -15,10 +13,10 @@
   // import tt from '../toutiao2vue/tt'
   export default OnekitPage({}, {
     data: {
-      array: ["美国", "中国", "巴西", "日本"],
+      array: [],
     },
     onLoad() {
-
+      this.array = ["美国", "中国", "巴西", "日本"]
     },
     cancel() {
       console.log('[page1]: cancel')
