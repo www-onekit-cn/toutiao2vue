@@ -84,6 +84,11 @@
           this.$emit('Change', data)
         })
         break
+      case 'multiSelector':
+        eventBus.$on('onekit-mutiPicker-changeend', data => {
+          this.$emit('columnchange', data)
+        })
+        break
       default:
         return
       }

@@ -8,6 +8,7 @@
 </template>
 
 <script>
+  import { eventBus } from '../../../../eventBus'
   const PICKER_OPT_SELECTED = 'picker-opt-selected';
   const DECELERATION_FRICTION = 0.97;
   const MAX_PICKER_SPEED = 90;
@@ -97,7 +98,6 @@
             this.bounceFrom = 0;
           }
           this.update(y, 0, false, false);
-
         })
         this.$el.addEventListener('touchend', (ev) => {
           if (this.bounceFrom > 0) {
@@ -118,6 +118,19 @@
           }
           this.startY = null;
           this.decelerate();
+          const { changedTouches, currentTarget, target, timeStamp, touches } = ev
+          eventBus.$on('onekit-mutiPicker-change', data => {
+            const e = {
+              changedTouches,
+              currentTarget,
+              detail: data,
+              target,
+              timeStamp,
+              touches,
+              type: 'columnchange'
+            }
+            eventBus.$emit('onekit-mutiPicker-changeend', e)
+          })
         })
       },
       decelerate() {
