@@ -78,27 +78,28 @@
         this.pickerComponent.vm.showPicker()
       },
       change(data) {
-        if (data[0].refresh) this.index[0] = data[0].index;
-        if (data[1] && data[1].refresh) this.index[1] = data[1].index;
-        if (data[0] && !data[0].refresh && data[0].index != this.index[0]) {
-          if (this.column >= 2) {
-            this.pickerComponent.vm.columnArr[1] = this.data[data[0].index].children;
-            if (this.column >= 3) {
-              this.pickerComponent.vm.columnArr[2] = this.data[data[0].index].children[0].children;
-            }
+        console.log(data)
+        // if (data[0].refresh) this.index[0] = data[0].index;
+        // if (data[1] && data[1].refresh) this.index[1] = data[1].index;
+        // if (data[0] && !data[0].refresh && data[0].index != this.index[0]) {
+        //   if (this.column >= 2) {
+        //     this.pickerComponent.vm.columnArr[1] = this.data[data[0].index].children;
+        //     if (this.column >= 3) {
+        //       this.pickerComponent.vm.columnArr[2] = this.data[data[0].index].children[0].children;
+        //     }
 
-            this.pickerComponent.vm.column++;
-            this.index[0] = data[0].index;
-          }
+        // this.pickerComponent.vm.column++;
+        //     this.index[0] = data[0].index;
+        //   }
 
-        }
-        if (data[1] && !data[1].refresh && data[1].index != this.index[1]) {
-          this.pickerComponent.vm.columnArr[2] = this.data[data[0].index].children[data[1].index].children;
-          this.pickerComponent.vm.column++;
-          this.index[1] = data[1].index;
-        }
-        if (data[2] && !data[2].refresh && data[2].index != this.index[2]) this.index[2] = data[2].index || 0;
-        this.changeData = data;
+        // }
+        // if (data[1] && !data[1].refresh && data[1].index != this.index[1]) {
+        //   this.pickerComponent.vm.columnArr[2] = this.data[data[0].index].children[data[1].index].children;
+        //   this.pickerComponent.vm.column++;
+        //   this.index[1] = data[1].index;
+        // }
+        // if (data[2] && !data[2].refresh && data[2].index != this.index[2]) this.index[2] = data[2].index || 0;
+        // this.changeData = data;
         this.$emit('change', data);
         // eventBus.$emit('onekit-picker-change', data[this.index].index)
       },
