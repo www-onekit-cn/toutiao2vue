@@ -20,8 +20,8 @@
   </onekit-page> -->
   <onekit-page id='app'>
     <onekit-view onekit-class="section__title">普通选择器</onekit-view>
-    <onekit-picker :value="index" :range="array" @Change="bindPickerChange" @Cancel="bindPickerCancel" mode="multiSelector">
-      <onekit-view onekit-class="picker"> 当前选择：{{array[index]}} </onekit-view>
+    <onekit-picker :value="index" :range="multiArray" @Change="bindPickerChange" @Cancel="bindPickerCancel" mode="multiSelector">
+      <onekit-view onekit-class="picker"> 当前选择：{{multiArray[index]}} </onekit-view>
     </onekit-picker>
   </onekit-page>
 </template>
@@ -62,6 +62,11 @@
         "中国",
         "巴西",
         "日本"
+      ],
+      multiArray: [
+        ["无脊柱动物", "脊柱动物"],
+        ["扁性动物", "线形动物", "环节动物", "软体动物", "节肢动物"],
+        ["猪肉绦虫", "吸血虫"],
       ],
       index: 0
     },

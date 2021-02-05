@@ -9,7 +9,7 @@
     </div>
 
     <div class="multiselector" v-if="mode === 'multiSelector'">
-      <multiselector :column="'1'" :data="data"></multiselector>
+      <multiselector :column="'3'" :data="data"></multiselector>
       <slot></slot>
     </div>
 

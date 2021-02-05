@@ -51,7 +51,7 @@
         this.pickerComponent.vm = this.pickerComponent.$mount();
         document.body.appendChild(this.pickerComponent.vm.$el);
         this.pickerComponent.vm.parent = this;
-        this.multilevelInit();
+        this.multilevelInit()
       }
     },
     destroyed() {
@@ -70,12 +70,8 @@
     methods: {
       multilevelInit() {
         for (let i = 0; i < this.column; i++) {
-          this.pickerComponent.vm.columnArr.push([])
+          this.pickerComponent.vm.columnArr.push(this.data[i])
         }
-        if (this.column >= 1) this.pickerComponent.vm.columnArr[0] = this.data;
-        if (this.column >= 2) this.pickerComponent.vm.columnArr[1] = this.data[0].children;
-        if (this.column >= 3) this.pickerComponent.vm.columnArr[2] = this.data[0].children[0].children;
-
       },
       showPicker() {
         if (this.disabled) return
@@ -104,7 +100,7 @@
         if (data[2] && !data[2].refresh && data[2].index != this.index[2]) this.index[2] = data[2].index || 0;
         this.changeData = data;
         this.$emit('change', data);
-        eventBus.$emit('onekit-picker-change', data[this.index].index)
+        // eventBus.$emit('onekit-picker-change', data[this.index].index)
       },
       done() {
         this.pickerText = [];

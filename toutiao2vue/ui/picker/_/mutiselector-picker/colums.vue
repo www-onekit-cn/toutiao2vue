@@ -201,7 +201,7 @@
           if (refresh) {
             this.$emit('change', {
               column: this.column[this.lastIndex],
-              name: this.column[this.lastIndex].name,
+              // name: this.column[this.lastIndex].name,
               index: this.lastIndex,
               timeStamp: this.timeStamp,
               refresh: refresh
@@ -213,13 +213,11 @@
             .optHeight) == 0 && Math.abs(this.velocity) == 0 && done)) {
           this.$emit('change', {
             column: this.column[this.lastIndex],
-            name: this.column[this.lastIndex].name,
+            // name: this.column[this.lastIndex].name,
             index: this.lastIndex,
             timeStamp: this.timeStamp,
             refresh: refresh
           });
-
-          // console.log(this.lastIndex)
         }
 
       },
