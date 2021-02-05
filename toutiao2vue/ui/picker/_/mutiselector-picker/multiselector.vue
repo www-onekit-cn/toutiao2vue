@@ -91,7 +91,7 @@
           let valueIndex = PickerTools.findValueIndexDiffrent(this.newChangeValue, this.changeOldValue)
           if (JSON.stringify(columIndex) !== undefined) {
             const data = {
-              colum: columIndex,
+              column: columIndex,
               value: valueIndex
             }
             eventBus.$emit('onekit-mutiPicker-change', data)

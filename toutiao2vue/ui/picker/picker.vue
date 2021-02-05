@@ -8,7 +8,7 @@
       <slot></slot>
     </div>
 
-    <div class="multiselector" v-if="mode === 'multiSelector'">
+    <div class="multiselector" v-if="mode === 'multiSelector' && this.childData">
       <multiselector :column="'3'" :data="data"></multiselector>
       <slot></slot>
     </div>
@@ -38,7 +38,13 @@
   import { eventBus } from '../../eventBus'
   export default {
     name: "onekit-picker",
-    data: () => ({ data: [] }),
+    data() {
+      return {
+        data: '',
+        reldata: [],
+        childData: true
+      }
+    },
     mixins: [toutiao_behavior, onekit_behavior],
     props: {
       mode: {
@@ -51,7 +57,7 @@
       },
       range: Array,
       value: {
-        type: Number,
+        // type: Number || Array,
         default: 0
       }
     },
@@ -86,13 +92,28 @@
         break
       case 'multiSelector':
         eventBus.$on('onekit-mutiPicker-changeend', data => {
-          this.$emit('columnchange', data)
+          this.data = ['a', 'b', 'c']
+          this.$emit('Columnchange', data)
         })
         break
       default:
         return
       }
 
+    },
+    watch: {
+      range: {
+        deep: true,
+        handler() {
+          this.childData = false
+
+          setTimeout(() => {
+            this.childData = true
+
+          }, 0)
+
+        }
+      },
     }
   }
 </script>

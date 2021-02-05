@@ -16,7 +16,7 @@
     name: 'columns',
     props: {
       column: {
-        default: [],
+        default: () => [],
       },
       updateArr: {
         default: 0
