@@ -64,7 +64,9 @@
       value: {
         // type: Number || Array,
         default: 0
-      }
+      },
+      start: String,
+      end: String
     },
     components: {
       selector,
@@ -80,8 +82,20 @@
       if (this.mode === 'region') {
         this.data = city_list
       } else if (this.mode === 'time') {
+        let endStr
+        if (this.end) {
+          endStr = this.end.split(':')[0]
+        } else {
+          endStr = 24
+        }
+        let startStr
+        if (this.start) {
+          startStr = this.start.split(':')[0]
+        } else {
+          startStr = 0
+        }
         let time_lists = []
-        for (let i = 1; i <= 24; i++) {
+        for (let i = startStr; i <= endStr; i++) {
           let time_listHouers = {}
           time_listHouers['time'] = i
           time_listHouers['children'] = []
