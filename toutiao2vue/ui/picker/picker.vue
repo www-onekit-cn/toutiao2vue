@@ -38,7 +38,7 @@
   import multiselector from './_/mutiselector-picker/multiselector'
   import city_list from './_/region-picker/city-data.json'
   import timeComponent from './_/time-picker/time'
-  import time_list from './_/time-picker/time.json'
+  // import time_list from './_/time-picker/time.json'
   import { eventBus } from '../../eventBus'
   export default {
     name: "onekit-picker",
@@ -80,7 +80,21 @@
       if (this.mode === 'region') {
         this.data = city_list
       } else if (this.mode === 'time') {
-        this.data = time_list
+        let time_lists = []
+        for (let i = 1; i <= 24; i++) {
+          let time_listHouers = {}
+          time_listHouers['time'] = i
+          time_listHouers['children'] = []
+          for (let j = 1; j <= 60; j++) {
+            let time_listSecond = {}
+            time_listSecond['time'] = j
+            time_listHouers['children'].push(time_listSecond)
+          }
+          time_lists.push(time_listHouers)
+        }
+
+
+        this.data = time_lists
       } else {
         this.data = this.range
       }
@@ -102,7 +116,6 @@
         eventBus.$on('onekit-mutiPicker-changeend', data => {
           this.newRange = this.range
           eventBus.$emit('mutirangeChange', this.newRange)
-          eventBus.$off('mutirangeChange')
           this.$emit('Columnchange', data)
         })
 

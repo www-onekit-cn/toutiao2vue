@@ -160,7 +160,7 @@
         } = this;
         const selectedIndex = this.indexForY(-y);
         var children = this.$el.children[0].children;
-
+        console.log(children.length)
         const durationStr = (duration === 0) ? '' : duration + 'ms';
         for (let i = 0; i < children.length; i++) {
           const button = children[i];
@@ -227,7 +227,6 @@
         return Math.max(min, Math.min(n, max));
       },
       indexForY(y) {
-        // console.log(this.column.length)
         return Math.min(Math.max(Math.abs(Math.round(y / this.optHeight)), 0), this.column.length - 1);
       },
       /**
