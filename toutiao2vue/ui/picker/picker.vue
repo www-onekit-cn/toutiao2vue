@@ -19,7 +19,8 @@
     </div>
 
     <div class="dateselector" v-if="mode === 'date'">
-
+      <dateComponent :column="'3'" :data="data"></dateComponent>
+      <slot></slot>
     </div>
 
     <div class="regionselector" v-if="mode === 'region'">
@@ -38,7 +39,7 @@
   import multiselector from './_/mutiselector-picker/multiselector'
   import city_list from './_/region-picker/city-data.json'
   import timeComponent from './_/time-picker/time'
-  // import time_list from './_/time-picker/time.json'
+  import dateComponent from './_/date-picker/date'
   import { eventBus } from '../../eventBus'
   export default {
     name: "onekit-picker",
@@ -72,7 +73,8 @@
       selector,
       region,
       multiselector,
-      timeComponent
+      timeComponent,
+      dateComponent
     },
     created() {
 
@@ -109,6 +111,27 @@
 
 
         this.data = time_lists
+      } else if (this.mode === 'date') {
+        let date_lists = []
+
+        for (let i = 2000; i <= 2021; i++) {
+          let date_listsYears = {}
+          date_listsYears['date'] = i
+          date_listsYears['children'] = []
+          date_lists.push(date_listsYears)
+          for (let m = 1; m <= 12; m++) {
+            let date_listsMonths = {}
+            date_listsMonths['date'] = m
+            date_listsMonths['children'] = []
+            date_listsYears['children'].push(date_listsMonths)
+            for (let d = 1; d <= 31; d++) {
+              let date_listsDays = {}
+              date_listsDays['date'] = d
+              date_listsMonths['children'].push(date_listsDays)
+            }
+          }
+        }
+        this.data = date_lists
       } else {
         this.data = this.range
       }
@@ -135,6 +158,11 @@
         break
       case 'time':
         eventBus.$on('onekit-time-picker-change-done', data => {
+          this.$emit('Change', data)
+        })
+        break
+      case 'date':
+        eventBus.$on('onekit-date-picker-change-done', data => {
           this.$emit('Change', data)
         })
         break
