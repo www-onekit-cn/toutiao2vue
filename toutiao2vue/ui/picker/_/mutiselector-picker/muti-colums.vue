@@ -2,15 +2,16 @@
 
   <div class="xx-picker-col">
     <div ref="column" class="xx-picker-opts">
-      <button v-for="(item,index) of column" :opt-index="index" :key="index">{{item}}</button>
+      <button v-for="(item,index) of newRange" :opt-index="index" :key="index">{{item}}</button>
     </div>
   </div>
 </template>
 
 <script>
   import { eventBus } from '../../../../eventBus'
-  const PICKER_OPT_SELECTED = 'picker-opt-selected';
+  const PICKER_OPT_SELECTED = 'picker-opt-selected'
   const DECELERATION_FRICTION = 0.97;
+  // import PickerTools from '../tools'
   const MAX_PICKER_SPEED = 90;
   export default {
     name: 'columns',
@@ -32,8 +33,10 @@
         this.componentsInt(false, true);
       }
     },
+    created() {
+      this.newRange = this.column
+    },
     mounted() {
-
       this.timeStamp = Date.now();
       this.columnsInit();
       this.componentsInt(true);
@@ -49,7 +52,8 @@
         startY: 0,
         y: 0,
         rotateFactor: 0,
-        timeStamp: ''
+        timeStamp: '',
+        newRange: Array
       }
     },
     methods: {

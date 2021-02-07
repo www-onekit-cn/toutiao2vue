@@ -25,6 +25,7 @@
       <region :column="'3'" :data="data"></region>
       <slot></slot>
     </div>
+
   </div>
 </template>
 
@@ -42,7 +43,8 @@
       return {
         data: '',
         reldata: [],
-        childData: true
+        childData: true,
+        newRange: []
       }
     },
     mixins: [toutiao_behavior, onekit_behavior],
@@ -92,28 +94,17 @@
         break
       case 'multiSelector':
         eventBus.$on('onekit-mutiPicker-changeend', data => {
-          this.data = ['a', 'b', 'c']
+          this.newRange = this.range
+          eventBus.$emit('mutirangeChange', this.newRange)
+          eventBus.$off('mutirangeChange')
           this.$emit('Columnchange', data)
         })
+
         break
       default:
         return
       }
 
-    },
-    watch: {
-      range: {
-        deep: true,
-        handler() {
-          this.childData = false
-
-          setTimeout(() => {
-            this.childData = true
-
-          }, 0)
-
-        }
-      },
     }
   }
 </script>

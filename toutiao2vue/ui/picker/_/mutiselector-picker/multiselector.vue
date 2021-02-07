@@ -18,7 +18,8 @@
     name: 'multilevel',
     props: {
       data: {
-        default: ''
+        default: '',
+
       },
       placeholder: {
         type: String,
@@ -42,18 +43,33 @@
       }
     },
     watch: {
-      data(data) {
-        // eslint-disable-next-line vue/no-mutating-props
-        this.data = data;
-        let pickerComponent
-        typeof (Vue) == 'undefined' ? pickerComponent = require('vue').default.extend(picker): pickerComponent = Vue
-          .extend(picker);
-        this.pickerComponent = new pickerComponent();
-        this.pickerComponent.vm = this.pickerComponent.$mount();
-        document.body.appendChild(this.pickerComponent.vm.$el);
-        this.pickerComponent.vm.parent = this;
-        this.multilevelInit()
+      data: {
+        deep: true,
+        handler(data) {
+          // eslint-disable-next-line vue/no-mutating-props
+          this.data = data;
+          let pickerComponent
+          typeof (Vue) == 'undefined' ? pickerComponent = require('vue').default.extend(picker): pickerComponent = Vue
+            .extend(picker);
+          this.pickerComponent = new pickerComponent();
+          this.pickerComponent.vm = this.pickerComponent.$mount();
+          document.body.appendChild(this.pickerComponent.vm.$el);
+          this.pickerComponent.vm.parent = this;
+          this.multilevelInit()
+        }
       }
+      // data(data) {
+      //   // eslint-disable-next-line vue/no-mutating-props
+      //   this.data = data;
+      //   let pickerComponent
+      //   typeof (Vue) == 'undefined' ? pickerComponent = require('vue').default.extend(picker): pickerComponent = Vue
+      //     .extend(picker);
+      //   this.pickerComponent = new pickerComponent();
+      //   this.pickerComponent.vm = this.pickerComponent.$mount();
+      //   document.body.appendChild(this.pickerComponent.vm.$el);
+      //   this.pickerComponent.vm.parent = this;
+      //   this.multilevelInit()
+      // }
     },
     destroyed() {
       this.pickerComponent.vm.distory = true;

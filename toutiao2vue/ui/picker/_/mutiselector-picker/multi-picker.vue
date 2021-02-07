@@ -19,7 +19,7 @@
 </template>
 
 <script>
-  import columns from './colums'
+  import columns from './muti-colums'
   import { eventBus } from '../../../../eventBus'
   export default {
     components: {
