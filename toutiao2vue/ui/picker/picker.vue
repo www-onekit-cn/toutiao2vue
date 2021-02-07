@@ -14,7 +14,8 @@
     </div>
 
     <div class="timeselector" v-if="mode === 'time'">
-
+      <timeComponent :column="'2'" :data="data"></timeComponent>
+      <slot></slot>
     </div>
 
     <div class="dateselector" v-if="mode === 'date'">
@@ -36,6 +37,8 @@
   import region from './_/region-picker/region'
   import multiselector from './_/mutiselector-picker/multiselector'
   import city_list from './_/region-picker/city-data.json'
+  import timeComponent from './_/time-picker/time'
+  import time_list from './_/time-picker/time.json'
   import { eventBus } from '../../eventBus'
   export default {
     name: "onekit-picker",
@@ -66,7 +69,8 @@
     components: {
       selector,
       region,
-      multiselector
+      multiselector,
+      timeComponent
     },
     created() {
 
@@ -75,6 +79,8 @@
       eventBus['disabled'] = this.disabled
       if (this.mode === 'region') {
         this.data = city_list
+      } else if (this.mode === 'time') {
+        this.data = time_list
       } else {
         this.data = this.range
       }
