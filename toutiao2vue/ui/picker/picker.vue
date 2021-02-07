@@ -118,7 +118,11 @@
           eventBus.$emit('mutirangeChange', this.newRange)
           this.$emit('Columnchange', data)
         })
-
+        break
+      case 'time':
+        eventBus.$on('onekit-time-picker-change-done', data => {
+          this.$emit('Change', data)
+        })
         break
       default:
         return

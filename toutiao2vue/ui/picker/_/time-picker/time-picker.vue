@@ -44,7 +44,7 @@
         columnArr: [],
         columnText: [],
         parent: '',
-        region: []
+        result: ''
       }
     },
     methods: {
@@ -55,7 +55,7 @@
         this.openPicker = false;
         const { changedTouches, currentTarget, target, timeStamp, touches } = e
         const detail = {
-          value: this.region
+          value: this.result
         }
         const onekit_e = {
           changedTouches,
@@ -63,9 +63,10 @@
           detail,
           target,
           timeStamp,
-          touches
+          touches,
+          type: 'change'
         }
-        eventBus.$emit('onekit-region-picker-change-done', onekit_e)
+        eventBus.$emit('onekit-time-picker-change-done', onekit_e)
         this.parent.done();
       },
       cancel() {
@@ -82,6 +83,13 @@
               this.columnText[i] = data;
             }
           }
+        }
+        if (this.columnText[0].column && this.columnText[1]) {
+          let h = this.columnText[0].column.time
+          if (h < 10) h = `0${h}`
+          let s = this.columnText[1].column.time
+          if (s < 10) s = `0${s}`
+          this.result = `${h} : ${s}`
         }
         this.parent.change(this.columnText);
       }
