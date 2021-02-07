@@ -113,8 +113,15 @@
         this.data = time_lists
       } else if (this.mode === 'date') {
         let date_lists = []
-
-        for (let i = 2000; i <= 2021; i++) {
+        let startYear, endYear
+        if (this.start && this.end) {
+          startYear = this.start.split('-')[0]
+          endYear = this.end.split('-')[0]
+        } else {
+          startYear = 0
+          endYear = 0
+        }
+        for (let i = startYear; i <= endYear; i++) {
           let date_listsYears = {}
           date_listsYears['date'] = i
           date_listsYears['children'] = []
@@ -124,6 +131,8 @@
             date_listsMonths['date'] = m
             date_listsMonths['children'] = []
             date_listsYears['children'].push(date_listsMonths)
+
+
             for (let d = 1; d <= 31; d++) {
               let date_listsDays = {}
               date_listsDays['date'] = d
