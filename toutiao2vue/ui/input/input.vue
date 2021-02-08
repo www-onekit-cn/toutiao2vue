@@ -47,7 +47,16 @@
       'cursor-spacing': Number,
       'cursor': Number,
       'selection-start': Number,
-      'selection-end': Number
+      'selection-end': Number,
+      'adjust-position': {
+        type: Boolean,
+        default: true
+      },
+      'confirm-type': {
+        type: String,
+        default: 'done',
+        desc: 'h5 is not support'
+      }
     },
     computed: {
       newType() {
@@ -79,6 +88,9 @@
     },
     methods: {
       _focus(e) {
+        if (this.adjustPosition) {
+          window.scroll(0, 0)
+        }
         const { changedTouches, currentTarget, target, timeStamp, touches, type } = e
         const detail = {
           value: this.val
@@ -97,6 +109,7 @@
         this.$emit('Focus', focusData)
       },
       _blur(e) {
+
         const { changedTouches, currentTarget, target, timeStamp, touches, type } = e
         const detail = {
           value: this.val
