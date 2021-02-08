@@ -1,9 +1,10 @@
 <template>
   <onekit-page id='app'>
-    <onekit-input value="hello motherfucker what's my name"
+    <onekit-input value="h"
                   type="dight"
-                  :password="true"
-                  :focus="focus" />
+                  :password="false"
+                  :focus="focus"
+                  @Confirm="confirm" />
   </onekit-page>
 </template>
 
@@ -17,6 +18,9 @@
       setTimeout(() => {
         this.focus = true
       }, 3000)
+    },
+    confirm() {
+      console.log('ok')
     }
   })
 </script>

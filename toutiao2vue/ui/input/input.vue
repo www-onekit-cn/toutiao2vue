@@ -13,7 +13,9 @@
            :autofocus="focusNew? 'autofocus' : '' "
            @focus="_focus"
            @blur="_blur"
-           @keydown="_confirm" />
+           @keydown="_confirm"
+           v-model="val"
+           @input="_input" />
   </div>
 
 </template>
@@ -26,7 +28,8 @@
     mixins: [toutiao_behavior, onekit_behavior],
     data() {
       return {
-        focusNew: 'false'
+        focusNew: 'false',
+        val: ''
       }
     },
     props: {
@@ -42,6 +45,9 @@
       },
       'focus': Boolean,
       'cursor-spacing': Number,
+      'cursor': Number,
+      'selection-start': Number,
+      'selection-end': Number
     },
     computed: {
       newType() {
@@ -72,17 +78,64 @@
       }
     },
     methods: {
-      _focus() {
-        this.$emit('Focus')
+      _focus(e) {
+        const { changedTouches, currentTarget, target, timeStamp, touches, type } = e
+        const detail = {
+          value: this.val
+        }
+
+        const focusData = {
+          changedTouches,
+          currentTarget,
+          target,
+          detail,
+          timeStamp,
+          touches,
+          type
+        }
+
+        this.$emit('Focus', focusData)
       },
-      _blur() {
-        this.$emit('Blur')
+      _blur(e) {
+        const { changedTouches, currentTarget, target, timeStamp, touches, type } = e
+        const detail = {
+          value: this.val
+        }
+
+        const blurData = {
+          changedTouches,
+          currentTarget,
+          target,
+          detail,
+          timeStamp,
+          touches,
+          type
+        }
+        this.$emit('Blur', blurData)
       },
       _confirm(e) {
         if (e.key === 'Enter') {
           this.$emit('Confirm')
         }
-      }
+      },
+      _input(e) {
+        const { currentTarget, target, timeStamp, touches } = e
+        const detail = {
+          cursor: this.val.length,
+          value: this.val,
+        }
+        const type = 'input'
+
+        const inputData = {
+          currentTarget,
+          detail,
+          target,
+          timeStamp,
+          touches,
+          type
+        }
+        this.$emit('Input', inputData)
+      },
     }
   }
 </script>
