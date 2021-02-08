@@ -16,29 +16,60 @@
     mixins: [toutiao_behavior, onekit_behavior],
     data() {
       return {
-        formData: {},
+        formData: {
+          switch: '',
+          input: '',
+          checkbox: '',
+          slider: '',
+          radio: '',
+          picker: ''
+        },
       }
     },
-    props: {
-
-
-    },
+    props: {},
     methods: {
-
+      fn(data) {
+        console.log(data)
+      }
     },
     mounted() {
+      eventBus.$off('onekit-input-submit')
       eventBus.$on('onekit-input-submit', data => {
         this.formData['input'] = data
-        console.log(this.formData)
       })
+
+      eventBus.$off('onekit-switch-submit')
       eventBus.$on('onekit-switch-submit', data => {
         this.formData['switch'] = data
-        console.log(this.formData)
       })
+
+      eventBus.$off('onekit-checkbox-submit')
       eventBus.$on('onekit-checkbox-submit', data => {
         this.formData['checkbox'] = data
-        console.log(this.formData)
       })
+
+      eventBus.$off('onekit-slider-submit')
+      eventBus.$on('onekit-slider-submit', data => {
+        this.formData['slider'] = data
+      })
+
+      eventBus.$off('onekit-radio-submit')
+      eventBus.$on('onekit-radio-submit', data => {
+        this.formData['radio'] = data
+      })
+
+      eventBus.$off('onekit-picker-submit')
+      eventBus.$on('onekit-pciker-submit', data => {
+        this.formData['picker'] = data
+      })
+    },
+    watch: {
+      formData: {
+        handler(v) {
+          console.log(v)
+        },
+        deep: true
+      }
     }
   }
 </script>

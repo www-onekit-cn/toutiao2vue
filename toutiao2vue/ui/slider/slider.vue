@@ -25,6 +25,7 @@
 <script>
   import toutiao_behavior from "../../behaviors/toutiao_behavior"
   import onekit_behavior from "../../behaviors/onekit_behavior"
+  import { eventBus } from '../../eventBus'
   export default {
     name: "onekit-slider",
     mixins: [toutiao_behavior, onekit_behavior],
@@ -141,6 +142,7 @@
           type: 'change'
         }
         this.$emit('change', event)
+        eventBus.$emit('onekit-slider-submit', value)
       }
     }
   }

@@ -150,11 +150,13 @@
       switch (this.mode) {
       case 'selector':
         eventBus.$on('onekit-picker-change-done', data => {
+          eventBus.$emit('onekit-picker-submit', data)
           this.$emit('Change', data)
         })
         break
       case 'region':
         eventBus.$on('onekit-region-picker-change-done', data => {
+          eventBus.$emit('onekit-picker-submit', data)
           this.$emit('Change', data)
         })
         break
@@ -162,16 +164,19 @@
         eventBus.$on('onekit-mutiPicker-changeend', data => {
           this.newRange = this.range
           eventBus.$emit('mutirangeChange', this.newRange)
+          eventBus.$emit('onekit-picker-submit', data)
           this.$emit('Columnchange', data)
         })
         break
       case 'time':
         eventBus.$on('onekit-time-picker-change-done', data => {
+          eventBus.$emit('onekit-picker-submit', data)
           this.$emit('Change', data)
         })
         break
       case 'date':
         eventBus.$on('onekit-date-picker-change-done', data => {
+          eventBus.$emit('onekit-picker-submit', data)
           this.$emit('Change', data)
         })
         break
