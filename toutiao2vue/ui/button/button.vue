@@ -1,60 +1,44 @@
 <template>
-  <button
-          class="onekit-button"
-          :class="[typeClass, disabled ? 'weui_btn_disabled' : '', mini ? 'weui_btn_mini' : '']"
-          @click="button_click($event)">
+  <button :class="['onekit-button1',onekitClass]"
+          :id="onekitId"
+          :style="{onekitStyle, 'background-color': click ? '#f1f2f6' : '#ffffff'}"
+          @touchstart="_click()"
+          @touchmove="_click()"
+          @touchend="_touchend">
     <slot></slot>
   </button>
 </template>
 
 <script>
-  import toutiao_behavior from '../../behaviors/toutiao_behavior'
-  import onekit_behavior from '../../behaviors/onekit_behavior'
+  import toutiao_behavior from "../../behaviors/toutiao_behavior"
+  import onekit_behavior from "../../behaviors/onekit_behavior"
   export default {
-    mixins: [toutiao_behavior, onekit_behavior],
     name: 'onekit-button',
-    props: {
-      type: {
-        type: String,
-        default: 'primary',
-        required: false
-      },
-      disabled: {
-        type: Boolean,
-        default: false,
-        required: false
-      },
-      mini: {
-        type: Boolean,
-        default: false,
-        required: false
-      },
-      plain: {
-        type: Boolean,
-        default: false,
-        required: false
+    mixins: [toutiao_behavior, onekit_behavior],
+    data() {
+      return {
+        click: false
       }
     },
     methods: {
-      clickHandler($event) {
-        if (!this.disabled) {
-          this.$emit('click', $event)
-        }
-      }
-    },
-    computed: {
-      typeClass() {
-        return `weui_btn${this.plain ? '_plain' : ''}_${this.type}`;
+      _click() {
+        this.click = true
       },
-      disabledClass() {
-        if (this.plain && this.disabled) {
-          return 'weui-btn_plain-disabled'
-        } else if (this.disabled) {
-          return 'weui-btn_disabled'
-        } else {
-          return ''
-        }
+      _touchend() {
+        this.click = false
       }
     }
   }
 </script>
+
+<style>
+  .onekit-button1 {
+    width: 100%;
+    border: 1px solid #ccc;
+    padding: 16px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 4px;
+    outline: none;
+  }
+</style>

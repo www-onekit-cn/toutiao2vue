@@ -1,6 +1,6 @@
 <template>
   <onekit-page id='app'>
-    <onekit-form>
+    <!-- <onekit-form>
 
       <onekit-input></onekit-input>
 
@@ -14,7 +14,8 @@
       </onekit-checkbox-group>
       <onekit-slider :value="50" name="slider" show-value></onekit-slider>
 
-    </onekit-form>
+    </onekit-form> -->
+    <onekit-button>button</onekit-button>
 
   </onekit-page>
 </template>

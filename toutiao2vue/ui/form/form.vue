@@ -66,7 +66,7 @@
     watch: {
       formData: {
         handler(v) {
-          console.log(v)
+          eventBus.$emit('onekit-form-submit', v)
         },
         deep: true
       }
