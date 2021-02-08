@@ -12,7 +12,8 @@
            :value="model"
            :disabled="disabled"
            :checked="checked"
-           v-bind="$attrs">
+           v-bind="$attrs"
+           ref="inp">
 
     <slot></slot>
   </label>
@@ -21,6 +22,7 @@
 <script>
   import toutiao_behavior from "../../behaviors/toutiao_behavior"
   import onekit_behavior from "../../behaviors/onekit_behavior"
+  import { eventBus } from '../../eventBus';
   export default {
     name: "onekit-checkbox",
     mixins: [toutiao_behavior, onekit_behavior],
@@ -86,6 +88,13 @@
         if (!isDisabled) {
           this.model = isGroup ? value : !model;
         }
+        const dom = this.$refs.inp.checked
+        if (dom) {
+          eventBus.$emit('checkBox-val-confirm', this.value)
+        } else {
+          eventBus.$emit('checkBox-val-cancel', this.value)
+        }
+
       }
     }
   }

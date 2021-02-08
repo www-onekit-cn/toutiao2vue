@@ -10,6 +10,7 @@
 <script>
   import toutiao_behavior from "../../behaviors/toutiao_behavior"
   import onekit_behavior from "../../behaviors/onekit_behavior"
+  import { eventBus } from '../../eventBus'
   export default {
     name: "onekit-checkbox-group",
     mixins: [toutiao_behavior, onekit_behavior],
@@ -45,8 +46,19 @@
           selectItems.filter(selectitem => selectitem !== item)
         );
       }
+    },
+    mounted() {
+      eventBus.$on('checkBox-val-confirm', data => {
+        // console.log(this.chckboxArr.indexOf(data))
+        this.chckboxArr.push(data)
+        eventBus.$emit('onekit-checkbox-submit', this.chckboxArr)
+      })
+      eventBus.$on('checkBox-val-cancel', data => {
+        const index = this.chckboxArr.indexOf(data)
+        this.chckboxArr.splice(index, 1)
+        eventBus.$emit('onekit-checkbox-submit', this.chckboxArr)
+      })
     }
-
   }
 </script>
 
