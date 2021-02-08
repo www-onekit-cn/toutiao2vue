@@ -1,12 +1,15 @@
 <template>
-  <button
-          class="onekit-button"
-          :class="[typeClass, disabled ? 'weui_btn_disabled' : '', mini ? 'weui_btn_mini' : '']"
+  <button :class="['onekit-button1',onekitClass, 
+                  {'onekit-button-mini': size === 'mini'},]"
+          :id="onekitId"
           :style="{onekitStyle, 
                    'background-color': clicking ? _bgcolor.bgcolorActive : _bgcolor.bgcolor,
                    'color': clicking ? _bgcolor.bgTxtcolorActive : _bgcolor.bgTxtcolor,                   
                     }"
-          @click="button_click($event)">
+          :type="formType"
+          @touchstart="_clicking"
+          @touchmove="_clicking"
+          @touchend="_touchend">
     <div class="loading"
          v-if="_loading">
     </div>
@@ -15,66 +18,33 @@
 </template>
 
 <script>
-  import toutiao_behavior from '../../behaviors/toutiao_behavior'
-  import onekit_behavior from '../../behaviors/onekit_behavior'
+  import toutiao_behavior from "../../behaviors/toutiao_behavior"
+  import onekit_behavior from "../../behaviors/onekit_behavior"
+  import { eventBus } from '../../eventBus'
   export default {
+    name: 'onekit-button',
     mixins: [toutiao_behavior, onekit_behavior],
     data() {
       return {
         clicking: false
       }
     },
-    name: 'onekit-button',
     props: {
-      type: {
+      'size': {
         type: String,
-        default: 'primary',
-        required: false
+        default: 'default'
       },
-      disabled: {
-        type: Boolean,
-        default: false,
-        required: false
+      'type': {
+        type: String,
+        default: 'default'
       },
-      mini: {
-        type: Boolean,
-        default: false,
-        required: false
-      },
-      plain: {
-        type: Boolean,
-        default: false,
-        required: false
-      },
-      loading: Boolean
-    },
-    methods: {
-      button_click($event) {
-        if (!this.disabled) {
-          this.$emit('click', $event)
-        }
+      'disabled': Boolean,
+      'loading': Boolean,
+      'form-type': {
+        type: String
       }
     },
     computed: {
-      typeClass() {
-        return `weui_btn${this.plain ? '_plain' : ''}_${this.type}`;
-      },
-      disabledClass() {
-        if (this.plain && this.disabled) {
-          return 'weui-btn_plain-disabled'
-        } else if (this.disabled) {
-          return 'weui-btn_disabled'
-        } else {
-          return ''
-        }
-      },
-      _loading() {
-        let loading = false
-        if (this.loading) {
-          loading = true
-        }
-        return loading
-      },
       _bgcolor() {
         let bgcolor = '#f1f2f6',
           bgcolorActive = '#cccccc',
@@ -94,19 +64,51 @@
 
         return { bgcolor, bgcolorActive, bgTxtcolor, bgTxtcolorActive }
       },
+      _loading() {
+        let loading = false
+        if (this.loading) {
+          loading = true
+        }
+        return loading
+      }
+    },
+    methods: {
+      _clicking() {
+        if (this.disabled) return
+        this.clicking = true
+      },
+      _touchend() {
+        if (this.disabled) return
+        this.clicking = false
+      }
+    },
+    mounted() {
+      if (this.formType === 'submit') {
+        eventBus.$on('onekit-form-submit',
+          data => {
+            console.log(data)
+          })
+      }
     }
   }
 </script>
 
 <style>
-  .onekit-button {
+  .onekit-button1 {
     border: 1px solid #ccc;
     padding: 14px 16px;
     font-size: 16px;
     font-weight: 600;
     border-radius: 8px;
     outline: none;
-    /* width: 100%; */
+    width: 100%;
+  }
+
+  .onekit-button-mini {
+    width: auto;
+    font-weight: 500;
+    font-size: 13px;
+    padding: 8px 16px;
   }
 
   .loading {
