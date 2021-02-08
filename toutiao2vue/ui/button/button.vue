@@ -1,15 +1,16 @@
 <template>
   <button :class="['onekit-button1',onekitClass, 
-                  {'onekit-button-mini': size === 'mini'},
-                  {'onekit-button-primary': type === 'primary'}]"
+                  {'onekit-button-mini': size === 'mini'},]"
           :id="onekitId"
           :style="{onekitStyle, 
-                    'background-color': clicking ? _bgcolor.bgcolorActive : _bgcolor.bgcolor,
-                    'color': clicking ? _bgcolor.bgTxtcolorActive : _bgcolor.bgTxtcolor,                   
+                   'background-color': clicking ? _bgcolor.bgcolorActive : _bgcolor.bgcolor,
+                   'color': clicking ? _bgcolor.bgTxtcolorActive : _bgcolor.bgTxtcolor,                   
                     }"
           @touchstart="_clicking"
           @touchmove="_clicking"
           @touchend="_touchend">
+    <div class="loading"
+         v-if="_loading"></div>
     <slot></slot>
   </button>
 </template>
@@ -33,7 +34,9 @@
       'type': {
         type: String,
         default: 'default'
-      }
+      },
+      'disabled': Boolean,
+      'loading': Boolean
     },
     computed: {
       _bgcolor() {
@@ -49,14 +52,27 @@
           bgTxtcolorActive = 'rgba(255, 255, 255, .8)'
         }
 
+        if (this.disabled) {
+          bgTxtcolor = 'rgba(0, 0, 0, .3)'
+        }
+
         return { bgcolor, bgcolorActive, bgTxtcolor, bgTxtcolorActive }
       },
+      _loading() {
+        let loading = false
+        if (this.loading) {
+          loading = true
+        }
+        return loading
+      }
     },
     methods: {
       _clicking() {
+        if (this.disabled) return
         this.clicking = true
       },
       _touchend() {
+        if (this.disabled) return
         this.clicking = false
       }
     }
@@ -66,7 +82,7 @@
 <style>
   .onekit-button1 {
     border: 1px solid #ccc;
-    padding: 16px;
+    padding: 14px 16px;
     font-size: 16px;
     font-weight: 600;
     border-radius: 8px;
@@ -80,5 +96,28 @@
     font-size: 13px;
     padding: 8px 16px;
     background: rgb(226, 109, 109);
+  }
+
+  .loading {
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+    /* background: #000; */
+    border: 2px solid #ffffff;
+    border-bottom: .3px solid transparent;
+    border-radius: 100%;
+    margin-right: 8px;
+    transform: translateY(4px);
+    animation: loadingRotato 1.4s linear infinite;
+  }
+
+  @keyframes loadingRotato {
+    from {
+      transform: rotate(0deg);
+    }
+
+    to {
+      transform: rotate(360deg);
+    }
   }
 </style>
