@@ -15,7 +15,8 @@
       <onekit-slider :value="50" name="slider" show-value></onekit-slider>
 
     </onekit-form> -->
-    <onekit-button>button</onekit-button>
+    <onekit-button type="primary">button</onekit-button>
+    <onekit-button size="mini">button</onekit-button>
 
   </onekit-page>
 </template>
