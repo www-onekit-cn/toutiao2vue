@@ -1,27 +1,22 @@
 <template>
   <onekit-page id='app'>
-    <onekit-input value="h"
-                  type="dight"
-                  :password="false"
-                  :focus="focus"
-                  @Confirm="confirm" />
+    <onekit-form>
+      <onekit-input></onekit-input>
+      <onekit-switch></onekit-switch>
+      <onekit-checkbox-group name="checkbox">
+        <onekit-label>
+          <onekit-checkbox value="checkbox1" />选项一</onekit-label>
+        <onekit-label>
+          <onekit-checkbox value="checkbox2" />选项二</onekit-label>
+      </onekit-checkbox-group>
+    </onekit-form>
   </onekit-page>
 </template>
 
 <script>
   import OnekitPage from '../toutiao2vue/OnekitPage';
   export default OnekitPage({}, {
-    data: {
-      focus: false
-    },
-    onLoad() {
-      setTimeout(() => {
-        this.focus = true
-      }, 3000)
-    },
-    confirm() {
-      console.log('ok')
-    }
+
   })
 </script>
 

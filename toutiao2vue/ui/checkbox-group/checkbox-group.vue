@@ -9,7 +9,7 @@
 
 <script>
   import toutiao_behavior from "../../behaviors/toutiao_behavior"
-import onekit_behavior from "../../behaviors/onekit_behavior"
+  import onekit_behavior from "../../behaviors/onekit_behavior"
   export default {
     name: "onekit-checkbox-group",
     mixins: [toutiao_behavior, onekit_behavior],
@@ -36,6 +36,7 @@ import onekit_behavior from "../../behaviors/onekit_behavior"
       selectItem(item) {
         const { value } = this;
         this.$emit("select", [...value, item]);
+        console.log([...value, item])
       },
       deleteItem(item) {
         const { value: selectItems } = this;

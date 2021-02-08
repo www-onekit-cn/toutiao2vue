@@ -17,6 +17,7 @@
 <script>
   import toutiao_behavior from "../../behaviors/toutiao_behavior"
   import onekit_behavior from "../../behaviors/onekit_behavior"
+  import { eventBus } from '../../eventBus'
   export default {
     name: "onekit-switch",
     mixins: [toutiao_behavior, onekit_behavior],
@@ -90,6 +91,7 @@
         this.status ? (this.status = false) : (this.status = true)
         this.changeStatus()
         this.$emit("change", this.status)
+        eventBus.$emit('onekit-switch-submit', this.status)
       }
     },
     mounted() {

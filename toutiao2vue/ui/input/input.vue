@@ -23,6 +23,7 @@
 <script>
   import toutiao_behavior from "../../behaviors/toutiao_behavior"
   import onekit_behavior from "../../behaviors/onekit_behavior"
+  import { eventBus } from '../../eventBus'
   export default {
     name: "onekit-input",
     mixins: [toutiao_behavior, onekit_behavior],
@@ -148,6 +149,7 @@
           type
         }
         this.$emit('Input', inputData)
+        eventBus.$emit('onekit-input-submit', inputData.detail.value)
       },
     }
   }
