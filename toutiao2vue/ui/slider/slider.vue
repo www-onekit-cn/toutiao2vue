@@ -6,11 +6,11 @@
     <div class="slider-bar"
          :style="{'background-color': backgroundColor || color}">
       <div class="inner-bar"
-           :style="{'width': left + 'px', 'background-color': activeColor || selectedColor}">
+           :style="{'width': _left + 'px', 'background-color': activeColor || selectedColor}">
       </div>
       <div class="dot"
            @touchmove="_touchmove"
-           :style="{'left': left + 'px','width': `${blockSize}px`,
+           :style="{'left': _left + 'px','width': `${blockSize}px`,
                     'height':  `${blockSize}px`, 
                     'top':  `-${blockSize / 2}px`,
                     'background-color': blockColor}"
@@ -85,6 +85,12 @@
       this.values = this.value
       this.left = this.values * 2.1
     },
+    computed: {
+      _left() {
+        let left = this.values * 2.1
+        return left
+      }
+    },
     methods: {
       _touchmove(e) {
 
@@ -143,6 +149,10 @@
         }
         this.$emit('change', event)
         eventBus.$emit('onekit-slider-submit', value)
+        eventBus.$off('onekit-foem-item-reset')
+        eventBus.$on('onekit-foem-item-reset', () => {
+          this.values = this.value
+        })
       }
     }
   }
