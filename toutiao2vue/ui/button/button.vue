@@ -60,7 +60,12 @@
               console.log(data)
             })
           }
+          if (this.formType === 'reset') {
+            eventBus.$emit('onekit-form-reset')
+          }
           this.$emit('click', $event)
+          const telNum = 'h5 is not supprot getting the cell phone number'
+          this.$emit('bindgetphonenumber', telNum)
         }
       }
     },

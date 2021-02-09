@@ -62,6 +62,17 @@
       eventBus.$on('onekit-pciker-submit', data => {
         this.formData['picker'] = data
       })
+
+      eventBus.$off('onekit-form-reset')
+      eventBus.$on('onekit-form-reset', () => {
+        // this.formData['switch'] = null
+        this.formData['checkbox'] = null
+        this.formData['slider'] = null
+        this.formData['radio'] = null
+        this.formData['picker'] = null
+        this.formData['input'] = null
+        eventBus.$emit('onekit-foem-item-reset')
+      })
     },
     watch: {
       formData: {

@@ -1,50 +1,93 @@
 <template>
   <onekit-page id='app'>
-    <!-- <onekit-form>
-
-      <onekit-input></onekit-input>
-
-      <onekit-switch></onekit-switch>
-
-      <onekit-checkbox-group name="checkbox">
-        <onekit-label>
-          <onekit-checkbox value="checkbox1" />选项一</onekit-label>
-        <onekit-label>
-          <onekit-checkbox value="checkbox2" />选项二</onekit-label>
-      </onekit-checkbox-group>
-      <onekit-slider :value="50" name="slider" show-value></onekit-slider>
-
-    </onekit-form> -->
-    <onekit-view onekit-class="container">
-      <onekit-view onekit-class="body body-space">
-
-        <onekit-view onekit-class="button-category">
-          <onekit-view onekit-class="category-title">form-type</onekit-view>
-          <onekit-form @submit="submit" @reset="reset">
-            <onekit-button form-type="submit" type="primary">submit</onekit-button>
-            <onekit-button form-type="reset" type="default">reset</onekit-button>
-          </onekit-form>
+    <onekit-page id='app'>
+      <onekit-form @submit.stop="formSubmit" @reset.stop="formReset" @submit="sub">
+        <onekit-view onekit-class="page-section page-section-space">
+          <onekit-view onekit-class="page-section-title">开关选择器 switch</onekit-view>
+          <onekit-switch name="switch" onekit-class="checkbox-space"></onekit-switch>
+          <onekit-switch name="switch" checked="checked"></onekit-switch>
         </onekit-view>
+        <onekit-view onekit-class="page-section page-section-space">
+          <onekit-view onekit-class="page-section-title">单项选择器 radio</onekit-view>
+          <onekit-radio-group name="radio">
+            <onekit-label>
+              <onekit-radio value="radio1"></onekit-radio>选项一
+            </onekit-label>
+            <onekit-label>
+              <onekit-radio value="radio2"></onekit-radio>选项二
+            </onekit-label>
+          </onekit-radio-group>
+        </onekit-view>
+        <onekit-view onekit-class="page-section page-section-space">
+          <onekit-view onekit-class="page-section-title">多项选择器 checkbox</onekit-view>
+          <onekit-checkbox-group name="checkbox">
+            <onekit-label>
+              <onekit-checkbox value="checkbox1"></onekit-checkbox>选项一
+            </onekit-label>
+            <onekit-label>
+              <onekit-checkbox value="checkbox2"></onekit-checkbox>选项二
+            </onekit-label>
+          </onekit-checkbox-group>
+        </onekit-view>
+        <onekit-view onekit-class="page-section page-section-space">
+          <onekit-view onekit-class="page-section-title">滑动选择器 slider</onekit-view>
+          <onekit-slider :value="50" name="slider" show-value></onekit-slider>
+        </onekit-view>
+        <onekit-view onekit-class="page-section">
+          <onekit-view onekit-class="page-section-title page-section-title-space">输入框 input</onekit-view>
+          <onekit-view onekit-class="ttui-cells input-block">
+            <onekit-view onekit-class="ttui-cell">
+              <onekit-view onekit-class="ttui-cell__bd">
+                <onekit-input onekit-class="ttui-input" name="input" placeholder="这是一个输入框"></onekit-input>
+              </onekit-view>
+            </onekit-view>
+          </onekit-view>
+        </onekit-view>
+        <onekit-view onekit-class="page-section page-section-space button-block">
+          <onekit-button type="primary" formType="submit">提交</onekit-button>
+          <onekit-button formType="reset">重设</onekit-button>
+        </onekit-view>
+      </onekit-form>
+    </onekit-page>
 
-      </onekit-view>
-    </onekit-view>
 
   </onekit-page>
 </template>
 
 <script>
   import OnekitPage from '../toutiao2vue/OnekitPage';
-  import { tt } from '../toutiao2vue/tt'
+  // import { tt } from '../toutiao2vue/tt'
   export default OnekitPage({}, {
-    submit: function () {
-      tt.showToast({
-        title: "submit success"
+    data: {
+      pickerHidden: true,
+      chosen: ''
+    },
+    pickerConfirm: function (e) {
+      this.setData({
+        pickerHidden: true
+      })
+      this.setData({
+        chosen: e.detail.value
       })
     },
-    reset: function () {
-      tt.showToast({
-        title: "reset success"
+    pickerCancel: function () {
+      this.setData({
+        pickerHidden: true
       })
+    },
+    pickerShow: function () {
+      this.setData({
+        pickerHidden: false
+      })
+    },
+    formSubmit: function () {},
+    formReset: function () {
+      this.setData({
+        chosen: ''
+      })
+    },
+    sub(e) {
+      console.log(e)
     }
   })
 </script>

@@ -3,7 +3,8 @@
        :class="['onekit-switch',onekitClass]"
        :style="onekitStyle"
        :id="onekitId"
-       class="switch">
+       class="switch"
+       :key="tag">
     <div class="switch-wrapper"
          :style="{'width':width+'px','height': height+'px','border-radius': (height/2)+'px','background':status?switchBg:'#e9ebef'}"
          :class="{'close':!status,'disabled':this.disabled}"
@@ -26,7 +27,8 @@
       return {
         status: true,
         left: 1,
-        switchBg: "#ED4C67"
+        switchBg: "#ED4C67",
+        tag: +new Date()
       };
     },
     props: {
@@ -102,6 +104,10 @@
       if (this.switchBg != this.background) {
         this.switchBg = this.background
       }
+      eventBus.$on('onekit-foem-item-reset', () => {
+        if (!this.checked) this.status = false
+        eventBus.$emit('onekit-switch-submit', this.status)
+      })
     },
   }
 </script>
