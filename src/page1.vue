@@ -1,7 +1,7 @@
 <template>
   <onekit-page id='app'>
     <onekit-page id='app'>
-      <onekit-form @submit.stop="formSubmit" @reset.stop="formReset" @submit="sub">
+      <onekit-form @submit.stop="formSubmit" @Reset="reset" @submit="sub">
         <onekit-view onekit-class="page-section page-section-space">
           <onekit-view onekit-class="page-section-title">开关选择器 switch</onekit-view>
           <onekit-switch name="switch" onekit-class="checkbox-space"></onekit-switch>
@@ -87,6 +87,9 @@
       })
     },
     sub(e) {
+      console.log(e)
+    },
+    reset(e) {
       console.log(e)
     }
   })

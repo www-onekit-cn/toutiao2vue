@@ -64,8 +64,8 @@
       })
 
       eventBus.$off('onekit-form-reset')
-      eventBus.$on('onekit-form-reset', () => {
-
+      eventBus.$on('onekit-form-reset', data => {
+        this.$emit('Reset', data)
         eventBus.$emit('onekit-foem-item-reset')
       })
     },

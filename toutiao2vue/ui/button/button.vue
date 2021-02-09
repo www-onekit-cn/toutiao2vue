@@ -61,7 +61,26 @@
             })
           }
           if (this.formType === 'reset') {
-            eventBus.$emit('onekit-form-reset')
+            const { changedTouches, currentTarget, target, timeStamp, touches } = $event
+            const detail = {
+              target: {
+                id: '',
+                dataset: {},
+                offsetLeft: '',
+                offsetTop: ''
+              }
+            }
+            const type = 'reset'
+            const data = {
+              changedTouches,
+              currentTarget,
+              target,
+              detail,
+              timeStamp,
+              touches,
+              type
+            }
+            eventBus.$emit('onekit-form-reset', data)
           }
           this.$emit('click', $event)
           const telNum = 'h5 is not supprot getting the cell phone number'
