@@ -151,6 +151,12 @@
         this.$emit('Input', inputData)
         eventBus.$emit('onekit-input-submit', inputData.detail.value)
       },
+    },
+    mounted() {
+      eventBus.$on('onekit-foem-item-reset', () => {
+        this.val = ''
+        eventBus.$emit('onekit-input-submit', this.val)
+      })
     }
   }
 </script>
