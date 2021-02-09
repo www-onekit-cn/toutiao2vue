@@ -48,8 +48,10 @@
       }
     },
     mounted() {
+      eventBus.$on('onekit-foem-item-reset', () => {
+        this.chckboxArr.length = 0
+      })
       eventBus.$on('checkBox-val-confirm', data => {
-        // console.log(this.chckboxArr.indexOf(data))
         this.chckboxArr.push(data)
         eventBus.$emit('onekit-checkbox-submit', this.chckboxArr)
       })
@@ -58,6 +60,7 @@
         this.chckboxArr.splice(index, 1)
         eventBus.$emit('onekit-checkbox-submit', this.chckboxArr)
       })
+
     }
   }
 </script>

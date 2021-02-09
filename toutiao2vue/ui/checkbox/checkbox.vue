@@ -96,6 +96,12 @@
         }
 
       }
+    },
+    mounted() {
+      eventBus.$on('onekit-foem-item-reset', () => {
+        this.$refs.inp.checked = false
+      })
+
     }
   }
 </script>
