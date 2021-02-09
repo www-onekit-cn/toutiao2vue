@@ -149,7 +149,7 @@
         }
         this.$emit('change', event)
         eventBus.$emit('onekit-slider-submit', value)
-        eventBus.$off('onekit-foem-item-reset')
+
         eventBus.$on('onekit-foem-item-reset', () => {
           this.values = this.value
         })
