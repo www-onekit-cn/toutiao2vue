@@ -50,7 +50,12 @@
           touches,
           type: "change"
         }
+        eventBus.$on('onekit-foem-item-reset', () => {
+          e.target.checked = false
+          emitData.detail.value = null
+        })
         eventBus.$emit('itemclick', emitData)
+
         eventBus.$on('radio-cancel', data => {
           if (this.value !== data) {
             e.target.checked = false
