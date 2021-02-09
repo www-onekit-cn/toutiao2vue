@@ -29,7 +29,7 @@
   export default {
     name: "onekit-slider",
     mixins: [toutiao_behavior, onekit_behavior],
-    data: () => ({ left: 0, values: 0 }),
+    data: () => ({ left: 0, values: 0, nowVal: 0 }),
     props: {
       'max': {
         type: Number,
@@ -83,22 +83,24 @@
     },
     created() {
       this.values = this.value
-      this.left = this.values * 2.1
+      this.left = this.values * window.innerWidth / 115
     },
     computed: {
       _left() {
-        let left = this.values * 2.1
+        let left = this.values * window.innerWidth / 115
         return left
       }
     },
     methods: {
       _touchmove(e) {
+        let startPencent = 0
+        let endPercent = 100
 
         if (this.disabled) return
         //onsole.log(window.screen.availWidth) // 屏幕宽度
         const { clientX } = e.changedTouches[0]
         if (clientX < window.screen.availWidth && clientX > -1) {
-          this.left = clientX
+          this.left += clientX
           if (this.left < 0) {
             this.left = 0
           }
@@ -108,12 +110,15 @@
             this.left = window.screen.availWidth * percent
           }
 
-          this.values = Math.round(Math.round(clientX / window.screen.availWidth / 0.86 * 100) * (this.max / 100))
-          if (this.values < this.min) {
-            this.values = this.min
+          this.nowVal = (this.max - this.min) * (this.values / endPercent) + this.min
+
+
+          this.values = Math.round(Math.round(clientX / window.screen.availWidth / 0.86 * 100))
+          if (this.values < startPencent) {
+            this.values = startPencent
           }
-          if (this.values > this.max) {
-            this.values = this.max
+          if (this.values > endPercent) {
+            this.values = endPercent
           }
           const { changedTouches, currentTarget, target, timeStamp, touches } = e
           const value = this.values
@@ -134,7 +139,7 @@
       },
       _touchend(e) {
         const { changedTouches, currentTarget, target, timeStamp, touches } = e
-        const value = this.values
+        const value = this.nowVal
         const detail = {
           value
         }
@@ -147,7 +152,8 @@
           touches,
           type: 'change'
         }
-        this.$emit('change', event)
+        this.$emit('Change', event)
+
         eventBus.$emit('onekit-slider-submit', value)
 
         eventBus.$on('onekit-foem-item-reset', () => {

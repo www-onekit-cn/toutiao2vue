@@ -42,9 +42,9 @@
         <onekit-view onekit-class="page-section page-section-space">
           <onekit-view onekit-class="page-section-title">
             <onekit-text>幻灯片切换时长(ms)</onekit-text>
-            <onekit-text onekit-class="info"> {{duration}}</onekit-text>
+            <onekit-text onekit-class="info"> {{ duration }} </onekit-text>
           </onekit-view>
-          <onekit-slider @Change="durationChange"></onekit-slider>
+          <onekit-slider @Change="durationChange" :min="500" :max="2000"></onekit-slider>
           <onekit-view onekit-class="page-section-title">
             <onekit-text>自动播放间隔时长(ms)</onekit-text>
             <onekit-text onekit-class="info"> {{interval}}</onekit-text>
@@ -75,7 +75,6 @@
       duration: 500
     },
     changeIndicatorDots: function () {
-
       this.setData({
         indicatorDots: !this.data.indicatorDots
       })
@@ -101,9 +100,12 @@
       })
     },
     durationChange: function (e) {
-      this.setData({
-        duration: e.detail.value
-      })
+      // console.log(e)
+      // this.setData({
+      //   duration: e.detail.value
+      // })
+      this.duration = e.detail.value
+      // console.log(this.duration)
     },
     animationFinish: function (e) {
       console.log(e.detail)

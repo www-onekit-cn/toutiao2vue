@@ -167,7 +167,7 @@
           this.isStart = false;
         }
       },
-      /// 监听触屏结束
+
       main_touchend(event) {
         event.preventDefault();
         this.touching = false;
@@ -182,9 +182,8 @@
         this.canSlide = true;
       },
       autoPlay() {
-        // 自动轮播
-        if (this.touching == false && this.autoplay) {
-          var auto = setInterval(() => {
+        if (!this.touching && this.autoplay) {
+          this.auto = setInterval(() => {
             if (this.currentIndex === this.sliderLength) {
               this.setIndex(0);
               this.startTranslateX = this.translateX;
@@ -196,12 +195,14 @@
             this.setIndex(this.currentIndex)
           }, this.duration * 10);
         } else {
-          clearInterval(auto)
+          clearInterval(this.auto)
         }
+
       }
 
     },
     mounted() {
+      console.log(window.innerWidth)
       let width = this.$refs['main'].offsetWidth
       this.width = width;
       this.sliderLength = this.$children.length
