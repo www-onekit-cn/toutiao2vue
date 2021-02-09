@@ -54,6 +54,7 @@
           e.target.checked = false
           emitData.detail.value = null
         })
+
         eventBus.$emit('itemclick', emitData)
 
         eventBus.$on('radio-cancel', data => {
