@@ -52,7 +52,8 @@
         }
         eventBus.$on('onekit-foem-item-reset', () => {
           e.target.checked = false
-          emitData.detail.value = null
+          emitData.detail.value = ''
+          eventBus.$emit('itemclick', emitData)
         })
 
         eventBus.$emit('itemclick', emitData)

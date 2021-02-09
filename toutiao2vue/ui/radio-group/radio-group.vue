@@ -17,7 +17,7 @@
     props: {
       'name': String
     },
-    created() {
+    mounted() {
       eventBus.$on('itemclick', data => {
         this.$emit('change', data)
         eventBus.$emit('radio-cancel', data.detail.value)
