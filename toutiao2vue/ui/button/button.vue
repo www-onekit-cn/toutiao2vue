@@ -23,7 +23,8 @@
     mixins: [toutiao_behavior, onekit_behavior],
     data() {
       return {
-        clicking: false
+        clicking: false,
+        formData: {}
       }
     },
     name: 'onekit-button',
@@ -55,10 +56,28 @@
       button_click($event) {
         if (!this.disabled) {
           if (this.formType === 'submit') {
-            eventBus.$off('onekit-form-submit')
-            eventBus.$on('onekit-form-submit', data => {
-              console.log(data)
-            })
+            const { changedTouches, currentTarget, target, timeStamp, touches } = $event
+            const detail = {
+              formId: this.onekitId,
+              target: {
+                id: '',
+                dataset: {},
+                offsetLeft: '',
+                offsetTop: ''
+              },
+              value: this.formData
+            }
+            const type = 'submit'
+            const data = {
+              changedTouches,
+              currentTarget,
+              target,
+              detail,
+              timeStamp,
+              touches,
+              type
+            }
+            eventBus.$emit('onekit-form-submit-click', data)
           }
           if (this.formType === 'reset') {
             const { changedTouches, currentTarget, target, timeStamp, touches } = $event
@@ -82,6 +101,7 @@
             }
             eventBus.$emit('onekit-form-reset', data)
           }
+
           this.$emit('click', $event)
           const telNum = 'h5 is not supprot getting the cell phone number'
           this.$emit('bindgetphonenumber', telNum)
@@ -127,6 +147,11 @@
 
         return { bgcolor, bgcolorActive, bgTxtcolor, bgTxtcolorActive }
       },
+    },
+    mounted() {
+      eventBus.$on('onekit-form-submit', data => {
+        this.formData = data
+      })
     }
   }
 </script>

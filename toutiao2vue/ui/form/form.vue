@@ -2,7 +2,8 @@
   <form
         :class="['onekit-form',onekitClass]"
         :style="onekitStyle"
-        :id="onekitId">
+        :id="onekitId"
+        :key="onekitId">
     <slot></slot>
   </form>
 </template>
@@ -27,11 +28,6 @@
       }
     },
     props: {},
-    methods: {
-      fn(data) {
-        console.log(data)
-      }
-    },
     mounted() {
       eventBus.$off('onekit-input-submit')
       eventBus.$on('onekit-input-submit', data => {
@@ -68,13 +64,19 @@
         this.$emit('Reset', data)
         eventBus.$emit('onekit-foem-item-reset')
       })
+
+
+      eventBus.$off('onekit-form-submit-click')
+      eventBus.$on('onekit-form-submit-click', data => {
+        this.$emit('Submit', data)
+      })
     },
     watch: {
       formData: {
         handler(v) {
           eventBus.$emit('onekit-form-submit', v)
         },
-        deep: true
+        deep: true,
       }
     }
   }
