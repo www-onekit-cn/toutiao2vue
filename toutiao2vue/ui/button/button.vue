@@ -6,7 +6,8 @@
                    'background-color': clicking ? _bgcolor.bgcolorActive : _bgcolor.bgcolor,
                    'color': clicking ? _bgcolor.bgTxtcolorActive : _bgcolor.bgTxtcolor,                   
                     }"
-          @click="button_click($event)">
+          @click.prevent="button_click($event)"
+          :type="formType">
     <div class="loading"
          v-if="_loading">
     </div>
@@ -17,6 +18,7 @@
 <script>
   import toutiao_behavior from '../../behaviors/toutiao_behavior'
   import onekit_behavior from '../../behaviors/onekit_behavior'
+  import { eventBus } from '../../eventBus'
   export default {
     mixins: [toutiao_behavior, onekit_behavior],
     data() {
@@ -46,11 +48,18 @@
         default: false,
         required: false
       },
-      loading: Boolean
+      loading: Boolean,
+      'form-type': String
     },
     methods: {
       button_click($event) {
         if (!this.disabled) {
+          if (this.formType === 'submit') {
+            eventBus.$off('onekit-form-submit')
+            eventBus.$on('onekit-form-submit', data => {
+              console.log(data)
+            })
+          }
           this.$emit('click', $event)
         }
       }
