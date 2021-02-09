@@ -216,7 +216,7 @@
         this.isTransition = true;
       }, 300);
       this.autoPlay()
-      console.log(this.$refs.swipericon)
+      // console.log(this.$refs.swipericon)
     },
     created() {},
     beforeDestroy() {},

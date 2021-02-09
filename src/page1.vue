@@ -1,55 +1,58 @@
 <template>
   <onekit-page id='app'>
-    <onekit-page id='app'>
-      <onekit-form @submit.stop="formSubmit" @Reset="reset" @Submit="sub">
-        <onekit-view onekit-class="page-section page-section-space">
-          <onekit-view onekit-class="page-section-title">开关选择器 switch</onekit-view>
-          <onekit-switch name="switch" onekit-class="checkbox-space"></onekit-switch>
-          <onekit-switch name="switch" checked="checked"></onekit-switch>
-        </onekit-view>
-        <onekit-view onekit-class="page-section page-section-space">
-          <onekit-view onekit-class="page-section-title">单项选择器 radio</onekit-view>
-          <onekit-radio-group name="radio">
-            <onekit-label>
-              <onekit-radio value="radio1"></onekit-radio>选项一
-            </onekit-label>
-            <onekit-label>
-              <onekit-radio value="radio2"></onekit-radio>选项二
-            </onekit-label>
-          </onekit-radio-group>
-        </onekit-view>
-        <onekit-view onekit-class="page-section page-section-space">
-          <onekit-view onekit-class="page-section-title">多项选择器 checkbox</onekit-view>
-          <onekit-checkbox-group name="checkbox">
-            <onekit-label>
-              <onekit-checkbox value="checkbox1"></onekit-checkbox>选项一
-            </onekit-label>
-            <onekit-label>
-              <onekit-checkbox value="checkbox2"></onekit-checkbox>选项二
-            </onekit-label>
-          </onekit-checkbox-group>
-        </onekit-view>
-        <onekit-view onekit-class="page-section page-section-space">
-          <onekit-view onekit-class="page-section-title">滑动选择器 slider</onekit-view>
-          <onekit-slider :value="50" name="slider" show-value></onekit-slider>
+    <onekit-view onekit-class="container">
+      <onekit-view onekit-class="body body-space">
+        <onekit-view onekit-class="page-section">
+          <onekit-swiper :indicator-dots="indicatorDots" indicator-color="rgba(0, 0, 0, .3)" indicator-active-color="rgba(0, 0, 0, 1)" :current="0" current-item-id previous-margin next-margin :display-multiple-items="1" :autoplay="autoplay" :interval="interval" :circular="circular" :vertical="vertical" :duration="duration" @Animationfinish="animationFinish" @Transition="transition">
+            <!-- <onekit-view> -->
+            <onekit-swiper-item v-for="(item,index) in background" :key="index">
+              <onekit-view :class="`onekit-swiper-item${item}`"></onekit-view>
+            </onekit-swiper-item>
+            <!-- </onekit-view> -->
+          </onekit-swiper>
         </onekit-view>
         <onekit-view onekit-class="page-section">
-          <onekit-view onekit-class="page-section-title page-section-title-space">输入框 input</onekit-view>
-          <onekit-view onekit-class="ttui-cells input-block">
+          <onekit-view onekit-class="ttui-cells">
             <onekit-view onekit-class="ttui-cell">
-              <onekit-view onekit-class="ttui-cell__bd">
-                <onekit-input onekit-class="ttui-input" name="input" placeholder="这是一个输入框"></onekit-input>
+              <onekit-view onekit-class="ttui-cell__bd">指示点</onekit-view>
+              <onekit-view onekit-class="ttui-cell__ft">
+                <onekit-switch :checked="indicatorDots" @Change="changeIndicatorDots"></onekit-switch>
+              </onekit-view>
+            </onekit-view>
+            <onekit-view onekit-class="ttui-cell">
+              <onekit-view onekit-class="ttui-cell__bd">自动播放</onekit-view>
+              <onekit-view onekit-class="ttui-cell__ft">
+                <onekit-switch :checked="autoplay" @Change="changeAutoplay"></onekit-switch>
+              </onekit-view>
+            </onekit-view>
+            <onekit-view onekit-class="ttui-cell">
+              <onekit-view onekit-class="ttui-cell__bd">循环播放</onekit-view>
+              <onekit-view onekit-class="ttui-cell__ft">
+                <onekit-switch :checked="circular" @Change="changeCircular"></onekit-switch>
+              </onekit-view>
+            </onekit-view>
+            <onekit-view onekit-class="ttui-cell">
+              <onekit-view onekit-class="ttui-cell__bd">滑块放置方向是否为竖直</onekit-view>
+              <onekit-view onekit-class="ttui-cell__ft">
+                <onekit-switch :checked="vertical" @Change="changeVertical"></onekit-switch>
               </onekit-view>
             </onekit-view>
           </onekit-view>
         </onekit-view>
-        <onekit-view onekit-class="page-section page-section-space button-block">
-          <onekit-button type="primary" formType="submit">提交</onekit-button>
-          <onekit-button formType="reset">重设</onekit-button>
+        <onekit-view onekit-class="page-section page-section-space">
+          <onekit-view onekit-class="page-section-title">
+            <onekit-text>幻灯片切换时长(ms)</onekit-text>
+            <onekit-text onekit-class="info"> {{duration}}</onekit-text>
+          </onekit-view>
+          <onekit-slider @Change="durationChange"></onekit-slider>
+          <onekit-view onekit-class="page-section-title">
+            <onekit-text>自动播放间隔时长(ms)</onekit-text>
+            <onekit-text onekit-class="info"> {{interval}}</onekit-text>
+          </onekit-view>
+          <onekit-slider @Change="intervalChange"></onekit-slider>
         </onekit-view>
-      </onekit-form>
-    </onekit-page>
-
+      </onekit-view>
+    </onekit-view>
 
   </onekit-page>
 </template>
@@ -59,42 +62,74 @@
   // import { tt } from '../toutiao2vue/tt'
   export default OnekitPage({}, {
     data: {
-      pickerHidden: true,
-      chosen: ''
+      background: [
+        'demo-text-1',
+        'demo-text-2',
+        'demo-text-3'
+      ],
+      indicatorDots: true,
+      vertical: false,
+      autoplay: false,
+      circular: false,
+      interval: 2000,
+      duration: 500
     },
-    pickerConfirm: function (e) {
+    changeIndicatorDots: function () {
+
       this.setData({
-        pickerHidden: true
-      })
-      this.setData({
-        chosen: e.detail.value
-      })
-    },
-    pickerCancel: function () {
-      this.setData({
-        pickerHidden: true
-      })
-    },
-    pickerShow: function () {
-      this.setData({
-        pickerHidden: false
+        indicatorDots: !this.data.indicatorDots
       })
     },
-    formSubmit: function () {},
-    formReset: function () {
+    changeAutoplay: function () {
       this.setData({
-        chosen: ''
+        autoplay: !this.data.autoplay
       })
     },
-    sub(e) {
-      console.log(e)
+    changeCircular: function () {
+      this.setData({
+        circular: !this.data.circular
+      })
     },
-    reset(e) {
-      console.log(e)
+    changeVertical: function () {
+      this.setData({
+        vertical: !this.data.vertical
+      })
+    },
+    intervalChange: function (e) {
+      this.setData({
+        interval: e.detail.value
+      })
+    },
+    durationChange: function (e) {
+      this.setData({
+        duration: e.detail.value
+      })
+    },
+    animationFinish: function (e) {
+      console.log(e.detail)
+    },
+    transition: function (e) {
+      console.log(e.detail)
     }
   })
 </script>
 
 <style>
+  .onekit-swiper-itemdemo-text-1 {
+    width: 100%;
+    height: 100%;
+    background: wheat;
+  }
 
+  .onekit-swiper-itemdemo-text-2 {
+    width: 100%;
+    height: 100%;
+    background: pink;
+  }
+
+  .onekit-swiper-itemdemo-text-3 {
+    width: 100%;
+    height: 100%;
+    background: cadetblue;
+  }
 </style>

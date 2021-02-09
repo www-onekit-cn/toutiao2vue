@@ -93,7 +93,7 @@
         }
         this.status ? (this.status = false) : (this.status = true)
         this.changeStatus()
-        this.$emit("change", this.status)
+        this.$emit("Change", this.status)
         eventBus.$emit('onekit-switch-submit', this.status)
       }
     },

@@ -84,7 +84,7 @@ export default function(PAGE_JSON, object) {
         let that = this;
         this.$nextTick(() => {
           for (let k of Object.keys(data)) {
-            that[k] = data[k];
+            that[k] = data[k]
           }
         });
       },
