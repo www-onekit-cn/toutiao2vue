@@ -53,7 +53,7 @@
         </onekit-view>
       </onekit-view>
     </onekit-view>
-
+    <h2>{{ test }}</h2>
   </onekit-page>
 </template>
 
@@ -72,7 +72,8 @@
       autoplay: false,
       circular: false,
       interval: 2000,
-      duration: 500
+      duration: 500,
+      test: 1000
     },
     changeIndicatorDots: function () {
       this.setData({
@@ -100,19 +101,22 @@
       })
     },
     durationChange: function (e) {
-      // console.log(e)
+      console.log(e)
       // this.setData({
       //   duration: e.detail.value
       // })
+      console.log(this.duration)
+
       this.duration = e.detail.value
-      // console.log(this.duration)
+      this.test = 2000
+      console.log(this.duration)
     },
     animationFinish: function (e) {
       console.log(e.detail)
     },
     transition: function (e) {
       console.log(e.detail)
-    }
+    },
   })
 </script>
 
