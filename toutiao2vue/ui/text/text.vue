@@ -4,7 +4,6 @@
 						this.userSelect? 'iselect': '']"
        :style="onekitStyle"
        :id="onekitId">
-    <!-- {{html}} -->
     <slot></slot>
   </div>
 </template>
@@ -36,7 +35,7 @@
     },
     computed: {
       html() {
-        let temp = this.vhtml
+        let temp = this.$slot.default[0].text
         if (this.space) {
           temp = STRING.replace(temp, ' ', `&${this.space};`)
         }
@@ -52,17 +51,6 @@
         return temp
       }
 
-    },
-    watch: {
-      vhtml: {
-        handler(v) {
-          console.log(v)
-        },
-        deep: true
-      }
-    },
-    mounted() {
-      console.log(this.$slots)
     }
   }
 </script>
