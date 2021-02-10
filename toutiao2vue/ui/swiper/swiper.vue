@@ -202,7 +202,6 @@
 
     },
     mounted() {
-      console.log(window.innerWidth)
       let width = this.$refs['main'].offsetWidth
       this.width = width;
       this.sliderLength = this.$children.length
