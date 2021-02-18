@@ -9,5 +9,4 @@
  * @FilePath: \toutiao2vue\toutiao2vue\pages\chooselocation\index.js
  */
 import chooselocation from './chooselocation.vue'
-chooselocation.install = (Vue) => Vue.component(chooselocation.name, chooselocation);
 export default chooselocation

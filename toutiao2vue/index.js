@@ -1,6 +1,5 @@
 import ui from './ui'
-import activity from './pages/activity'
-import tabs from './pages/tabs'
+import pages from './pages'
 import js from './js'
 import OnekitApp from './OnekitApp'
 import OnekitBehavior from './OnekitBehavior'
@@ -9,10 +8,9 @@ import OnekitPage from './OnekitPage'
 import tt from './tt'
 export default {
   install(Vue) {
-    Vue.use(ui),
-    Vue.use(activity),
-    Vue.use(tabs)
+    Vue.use(ui)
   },
+  pages,
   js,
   OnekitApp,
   OnekitBehavior,
