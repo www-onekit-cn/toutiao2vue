@@ -53,6 +53,7 @@
           temp = temp.replace(/&nbsp;/g, "&amp;nbsp;")
           temp = temp.replace(/&#39;/g, "&amp;&#39;")
           temp = temp.replace(/&quot;/g, "&amp;&quot;")
+          temp = temp.replace(/\\n/g, "<br>")
         }
         return temp
       }

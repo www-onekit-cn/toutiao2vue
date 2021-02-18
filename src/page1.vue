@@ -1,8 +1,27 @@
 <template>
   <onekit-page id='app'>
-
-    <onekit-text onekit-class="info"> {{interval}} </onekit-text>
-
+    <onekit-view onekit-class="page-body">
+      <onekit-view onekit-class="page-section">
+        <onekit-view onekit-class="page-section-title">
+          <onekit-text>flex-direction: row\n横向布局</onekit-text>
+        </onekit-view>
+        <onekit-view onekit-class="flex-wrapper" onekit-style="flex-direction:row;">
+          <onekit-view hover-class="hover-item" onekit-class="flex-item" onekit-style="background-color: #73d13d">A</onekit-view>
+          <onekit-view hover-class="hover-item" onekit-class="flex-item" onekit-style="background-color: #13c2c2">B</onekit-view>
+          <onekit-view hover-class="hover-item" onekit-class="flex-item" onekit-style="background-color: #40a9ff">C</onekit-view>
+        </onekit-view>
+      </onekit-view>
+      <onekit-view onekit-class="page-section">
+        <onekit-view onekit-class="page-section-title">
+          <onekit-text>flex-direction: column\n纵向布局</onekit-text>
+        </onekit-view>
+        <onekit-view onekit-class="flex-wrapper" onekit-style="flex-direction:column;">
+          <onekit-view onekit-class="flex-item-v" onekit-style="background-color: #73d13d">A</onekit-view>
+          <onekit-view onekit-class="flex-item-v" onekit-style="background-color: #13c2c2">B</onekit-view>
+          <onekit-view onekit-class="flex-item-v" onekit-style="background-color: #40a9ff">C</onekit-view>
+        </onekit-view>
+      </onekit-view>
+    </onekit-view>
   </onekit-page>
 </template>
 
@@ -19,21 +38,30 @@
 </script>
 
 <style>
-  .onekit-swiper-itemdemo-text-1 {
-    width: 100%;
-    height: 100%;
-    background: wheat;
+  .flex-wrapper {
+    margin-top: calc(var(--screen-width)*20/750);
+    display: flex;
+    justify-content: center;
   }
 
-  .onekit-swiper-itemdemo-text-2 {
-    width: 100%;
-    height: 100%;
-    background: pink;
+  .flex-item {
+    width: calc(var(--screen-width)*200/750);
+    height: calc(var(--screen-width)*300/750);
+    text-align: center;
+    line-height: calc(var(--screen-width)*300/750);
+    color: #fff;
   }
 
-  .onekit-swiper-itemdemo-text-3 {
-    width: 100%;
-    height: 100%;
-    background: cadetblue;
+  .flex-item.hover-item {
+    opacity: 0.6;
+  }
+
+  .flex-item-v {
+    align-self: center;
+    width: calc(var(--screen-width)*300/750);
+    height: calc(var(--screen-width)*160/750);
+    text-align: center;
+    line-height: calc(var(--screen-width)*160/750);
+    color: #fff;
   }
 </style>
