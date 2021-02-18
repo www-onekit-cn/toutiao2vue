@@ -1,7 +1,7 @@
 <template>
   <onekit-page id='app'>
 
-    <onekit-text onekit-class="info"> {{interval}}</onekit-text>
+    <onekit-text onekit-class="info"> {{interval}} </onekit-text>
 
   </onekit-page>
 </template>
@@ -14,13 +14,7 @@
       interval: 2000,
 
     },
-    onLoad() {
-      const timer = setInterval(() => {
-        this.interval++
-        if (this.interval === 2010) clearInterval(timer)
-      }, 1000)
-
-    }
+    onLoad() {}
   })
 </script>
 

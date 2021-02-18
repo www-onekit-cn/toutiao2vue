@@ -1,13 +1,4 @@
-/*
- * @Autor: YeWei Wang
- * @Date: 2021-01-14 13:53:32
- * @WeChat: wj826036
- * @Motto: 求知若渴，虚心若愚
- * @Description: 
- * @LastEditTime: 2021-01-26 17:31:16
- * @Version: 1.0
- * @FilePath: \toutiao2vue\src\app.json.js
- */
+
 export default {
 	"cloud":true,
 	"debug":false,
