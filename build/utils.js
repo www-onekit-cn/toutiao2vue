@@ -8,7 +8,7 @@ function  getComponentEntries(path) {
         const itemPath = join(path, item)
         const isDir = fs.statSync(itemPath).isDirectory();
         if (isDir) {
-            if( ['toutiao2vue/ui','toutiao2vue/pages'].includes(itemPath)>=0){
+            if( ['toutiao2vue/ui','toutiao2vue/pages/tabs','toutiao2vue/pages/activty'].indexOf(itemPath)>=0){
       
                  ret[item] = resolve(join(itemPath, 'index.js'))
             } 
